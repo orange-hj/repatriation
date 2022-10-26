@@ -1,0 +1,79 @@
+{
+	"pages": [ 
+		{
+			"path": "pages/index/home",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#3781C3",
+				"navigationBarTextStyle": "white",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/index/policy",
+			"style": {
+				"navigationBarTitleText": "政策",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#F0B519",
+				"navigationBarTextStyle": "white",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/index/match",
+			"style": {
+				"navigationBarTitleText": "赛事",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/index/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#8a8a8a",
+		"selectedColor": "#2c2c2c",
+		"borderStyle": "black",
+		"list": [
+			{
+				"selectedIconPath": "static/icon/home_selected.png",
+				"iconPath": "static/icon/home.png",
+				"pagePath": "pages/index/home",
+				"text": "首页"
+			},
+			{
+				"selectedIconPath": "static/icon/policy_selected.png",
+				"iconPath": "static/icon/policy.png",
+				"pagePath": "pages/index/policy",
+				"text": "政策"
+			},
+			{
+				"selectedIconPath": "static/icon/match_selected.png",
+				"iconPath": "static/icon/match.png",
+				"pagePath": "pages/index/match",
+				"text": "赛事"
+			},
+			{
+				"selectedIconPath": "static/icon/user_selected.png",
+				"iconPath": "static/icon/user.png",
+				"pagePath": "pages/index/mine",
+				"text": "我的"
+			}
+		]
+	}
+}

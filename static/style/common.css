@@ -1,0 +1,84 @@
+.page-common{
+	width: 100%;
+	height: 100%;
+	line-height: 1.35;
+	background-color: #fff;
+}
+.hover-effect{
+	opacity: 0.8;
+}
+button{
+	padding: 0;
+	margin: 0;
+	background-color: #fff;
+	border: none;
+}
+button::after{
+	content: '';
+	width: 0;
+	border: 0;
+}
+
+@font-face {
+	font-family: 'iconfont';
+	src: url('~@/static/font/iconfont.ttf');
+}
+.icon{
+	line-height: 1;
+}
+.iconfont{
+	/* font-size: inherit !important; */
+}
+.blue-bgc{
+	background-color: #2F72AE !important;
+}
+.orange-bgc{
+	background-color: #FF6600 !important;
+}
+.green-bgc{
+	background-color: #339933 !important;
+}
+.gray-bgc{
+	background-color: #C9C9C9 !important;
+}
+.blue-color{
+	color: #0099CC !important;
+}
+.orange-color{
+	color: #FF6600 !important;
+}
+.green-color{
+	color: #339933 !important;
+}
+.gray-color{
+	color: #C9C9C9 !important;
+}
+
+/* 赛事状态样式 */
+.match-orange-bgc{
+	background-color: #FF6600;
+}
+.match-orange-color{
+	color: #fff;
+}
+.match-plate-orange-bgc{
+	background-color: #FFE6E6;
+}
+.match-blue-bgc{
+	background-color: #488DCC;
+}
+.match-blue-color{
+	color: #fff;
+}
+.match-plate-blue-bgc{
+	background-color: #ECF3FA;
+}
+.match-gray-bgc{
+	background-color: #C9C9C9;
+}
+.match-gray-color{
+	color: #666666;
+}
+.match-plate-gray-bgc{
+	background-color: #F2F2F2;
+}
