@@ -52,7 +52,7 @@
 							</view>
 							<view class="code login-plate-item">
 								<view class="input">
-									<input type="number" placeholder="请输入密码" class="input" v-model="vcode">
+									<input type="number" placeholder="请输入密码" class="input" v-model="psw">
 								</view>
 								<view class="icon">
 									<text class="iconfont icon-about"></text>
@@ -60,7 +60,7 @@
 							</view>
 							<view class="code login-plate-item">
 								<view class="input">
-									<input type="number" placeholder="再次输入密码" class="input" v-model="vcode">
+									<input type="number" placeholder="再次输入密码" class="input" v-model="pswAgain">
 								</view>
 								<view class="icon">
 									<text class="iconfont icon-about"></text>
@@ -148,7 +148,9 @@ export default{
 			vcode:'',			//验证码
 			count:60,			//获取验证码倒计时
 			isSendCode:false,	//是否发送验证码
-			registerType:0,		//密码登录或验证码登录（0 验证码 / 1 密码）
+			registerType:1,		//密码登录或验证码登录（0 验证码 / 1 密码）
+			psw:'',				//密码
+			pswAgain:'',		//再次密码
 			
 			showPopup:'none'	//显示隐藏弹窗
 		}
@@ -196,24 +198,49 @@ export default{
 		},
 		//注册
 		register(){
-			if(this.phoneNumber.length == 0){
-				return this.$globalData.toast({title:'请输入手机号'})
+			const that = this
+			if(that.phoneNumber.length == 0){
+				return that.$globalData.toast({title:'请输入手机号'})
 			}
-			if(this.phoneNumber.length != 11){
-				return this.$globalData.toast({title:'手机号有误'})
+			if(that.phoneNumber.length != 11){
+				return that.$globalData.toast({title:'手机号有误'})
 			}
-			if(!this.checkTips){
-				this.showPopup = 'flex'
+			if(!that.checkTips){
+				that.showPopup = 'flex'
 				return
 			}
+			if(that.registerType == 0){
+				if(!that.vcode){
+					return that.$globalData.toast({title:'请输入验证码'})
+				}
+			}
+			if(that.registerType == 1){
+				if(!that.psw || !that.pswAgain){
+					return that.$globalData.toast({title:'请输入密码'})
+				}
+				if(that.psw != that.pswAgain){
+					return that.$globalData.toast({title:'两次密码不一致'})
+				}
+			}
 			uniCloud.callFunction({
-				name:'user',
+				name:'register',
 				data:{
-					name:'orange',
-					phone:this.phoneNumber
+					type:that.registerType,
+					phone:that.phoneNumber,
+					password:that.psw
 				},
 				success:(res) => {
 					console.log(res);
+					if(res.result.code == 200){
+						that.$globalData.toast({title:'注册成功'}).then(res =>{
+							uni.navigateBack()
+						})
+					}else{
+						that.$globalData.toast({title:res.result.message})
+						that.phoneNumber = ''
+						that.psw = ''
+						that.pswAgain = ''
+					}
 				},
 				fail:(err) =>{
 					console.log(err);

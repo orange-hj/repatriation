@@ -49,7 +49,7 @@
 						</view>
 						<view class="code login-plate-item" v-if="loginType == 1">
 							<view class="input">
-								<input type="number" placeholder="请输入密码" class="input" v-model="vcode">
+								<input type="number" placeholder="请输入密码" class="input" v-model="psw">
 							</view>
 							<view class="icon">
 								<text class="iconfont icon-about"></text>
@@ -141,7 +141,8 @@ export default{
 			vcode:'',			//验证码
 			count:60,			//获取验证码倒计时
 			isSendCode:false,	//是否发送验证码
-			loginType:0,		//密码登录或验证码登录（0 验证码 / 1 密码）
+			loginType:1,		//密码登录或验证码登录（0 验证码 / 1 密码）
+			psw:'',				//密码
 			
 			showPopup:'none'	//显示隐藏弹窗
 		}
@@ -155,10 +156,7 @@ export default{
 	methods:{
 		//获取数据
 		fetchData(){
-			getUserInfo({name:'orange'}).then(res =>{
-				console.log(res);
-				// this.userInfo = res.data[0]
-			})
+			
 		},
 		//关闭
 		closeLogin(){
@@ -197,21 +195,45 @@ export default{
 		},
 		//登录
 		login(){
-			if(!this.checkTips){
-				this.showPopup = 'flex'
+			const that = this
+			if(that.phoneNumber.length == 0){
+				return that.$globalData.toast({title:'请输入手机号'})
+			}
+			if(that.phoneNumber.length != 11){
+				return that.$globalData.toast({title:'手机号有误'})
+			}
+			if(!that.checkTips){
+				that.showPopup = 'flex'
 				return
 			}
-			if(this.phoneNumber.length != 11){
-				return this.$globalData.toast({title:'手机号有误'})
+			if(that.registerType == 0){
+				if(!that.vcode){
+					return that.$globalData.toast({title:'请输入验证码'})
+				}
+			}
+			if(that.registerType == 1){
+				if(!that.psw){
+					return that.$globalData.toast({title:'请输入密码'})
+				}
 			}
 			uniCloud.callFunction({
-				name:'user',
+				name:'login',
 				data:{
-					name:'orange',
-					phone:this.phoneNumber
+					type:that.loginType,
+					phone:that.phoneNumber,
+					password:that.psw
 				}
 			}).then(res =>{
 				console.log(res);
+				if(res.result.code == 200){
+					that.$globalData.toast({title:'登录成功'}).then(res =>{
+						uni.navigateBack()
+					})
+				}else{
+					that.$globalData.toast({title:res.result.message})
+					that.phoneNumber = ''
+					that.psw = ''
+				}
 			})
 		},
 		//勾选协议
