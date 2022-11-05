@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "赛事",
+  "enablePullDownRefresh": false,
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {}
+}

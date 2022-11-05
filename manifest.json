@@ -68,5 +68,27 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "router" : {
+            "base" : "./",
+            "mode" : "history"
+        },
+        "template" : "",
+        "devServer" : {
+            "proxy" : {
+                "/api" : {
+                    "target" : "http://192.168.1.101:8080",
+                    "changeOrigin" : true,
+                    "secure" : true,
+                    "pathRewrite" : {
+                        "^/api" : ""
+                    }
+                }
+            }
+        },
+        "unipush" : {
+            "enable" : true
+        }
+    }
 }

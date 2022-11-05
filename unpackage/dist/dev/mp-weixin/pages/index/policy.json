@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "政策",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#F0B519",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {}
+}

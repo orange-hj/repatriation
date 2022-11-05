@@ -1,6 +1,9 @@
 <template>
 	<view class="match-page">
-		match
+		<view class="match-page-container">
+			match
+		</view>
+		<tab-bar></tab-bar>
 	</view>
 </template>
 

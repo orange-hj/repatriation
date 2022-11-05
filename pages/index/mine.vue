@@ -22,6 +22,7 @@
 				</view>
 			</view>
 		</view>
+		<tab-bar></tab-bar>
 	</view>
 </template>
 

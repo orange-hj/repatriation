@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/home",
+    "pages/index/policy",
+    "pages/index/match",
+    "pages/index/mine",
+    "pages/index/login",
+    "pages/index/otherLogin"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#2c2c2c",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "static/icon/home_selected.png",
+        "iconPath": "static/icon/home.png",
+        "pagePath": "pages/index/home",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "static/icon/policy_selected.png",
+        "iconPath": "static/icon/policy.png",
+        "pagePath": "pages/index/policy",
+        "text": "政策"
+      },
+      {
+        "selectedIconPath": "static/icon/match_selected.png",
+        "iconPath": "static/icon/match.png",
+        "pagePath": "pages/index/match",
+        "text": "赛事"
+      },
+      {
+        "selectedIconPath": "static/icon/user_selected.png",
+        "iconPath": "static/icon/user.png",
+        "pagePath": "pages/index/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "tab-bar": "/components/tabbar"
+  }
+}

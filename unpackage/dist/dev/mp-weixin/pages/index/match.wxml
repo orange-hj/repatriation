@@ -1,0 +1,1 @@
+<view class="match-page"><view class="match-page-container">match</view><tab-bar vue-id="088d62f2-1" bind:__l="__l"></tab-bar></view>
