@@ -1,12 +1,35 @@
-import http from '@/utils/http.js'
+import http from "@/utils/http.js"
+import Vue from 'vue'
 
-const user = uniCloud.importObject('user') // 导入云对象
-
-export function getUserInfo(data){
-	return http({
-		url:"https://9f4ac7c2-5851-4e96-bf4d-26837649e2dc.bspapp.com/user",
-		method:'GET',
-		data:data
+export function login(){
+	return new Promise((resolve,reject) =>{
+		uni.login({
+			provider: 'weixin',
+			success:async (res) => {
+				if (res.errMsg == 'login:ok') {
+					resolve(res)
+				}
+			},
+			fail:(err) =>{
+				reject(err)
+			}
+		})
 	})
 }
 
+export function getToken(data) {
+	return new Promise((resolve,reject) =>{
+		uniCloud.callFunction({
+			name:'login',
+			data:{
+				code:data.code
+			},
+			success:(res) => {
+				resolve(res)
+			},
+			fail:(err) => {
+				reject(err)
+			}
+		})
+	})
+}

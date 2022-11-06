@@ -10,8 +10,16 @@
 
 <script>
 export default{
+	data(){
+		return{
+			
+		}
+	},
 	onLoad() {
 		uni.hideTabBar()
+	},
+	methods:{
+		
 	}
 }
 </script>

@@ -55,35 +55,13 @@ export default {
 				return false;
 			},
 			//提示弹窗
-			toast({title,type,url,back,wait = 1500}){
+			toast({title,type,wait = 1000}){
 				return new Promise((resolve,reject) =>{
 					uni.showToast({
 						title: title,
 						icon: type || 'none',
 						duration:wait
 					}).then(res =>{
-						if(back){
-							setTimeout(function(){
-								uni.navigateBack()
-							},1000)
-							resolve(res)
-							return
-						}
-						if(url){
-							if(url.includes('/', 7)){
-								setTimeout(function(){
-									uni.navigateTo({
-										url:url
-									})
-								},1000)
-							}else{
-								setTimeout(function(){
-									uni.switchTab({
-										url:url
-									})
-								},1000)
-							}
-						}
 						setTimeout(function(){
 							resolve(res)
 						},wait)
@@ -118,6 +96,7 @@ export default {
 	@import "@/static/style/common.css";
 	page{
 		font-family:"微软雅黑";
+		height: 100%;
 	}
 	
 	

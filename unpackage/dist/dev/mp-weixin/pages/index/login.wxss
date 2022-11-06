@@ -24,135 +24,65 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.login-page .login-page-container.data-v-c3d8bbfa {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  height: 100%;
-  padding-bottom: 32rpx;
+@media screen and (min-width: 1000px) {
+.content-wrap.data-v-c3d8bbfa {
+    width: 60% !important;
 }
-.login-page .login-page-container .close-btn.data-v-c3d8bbfa {
-  display: flex;
-  justify-content: space-between;
-  padding: 32rpx;
 }
-.login-page .login-page-container .content.data-v-c3d8bbfa {
-  flex: 1;
-}
-.login-page .login-page-container .content .user-info-plate.data-v-c3d8bbfa {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100rpx 0 60rpx;
-}
-.login-page .login-page-container .content .user-info-plate .avatar.data-v-c3d8bbfa {
-  width: 148rpx;
-  height: 148rpx;
-}
-.login-page .login-page-container .content .user-info-plate .avatar .image-wrap.data-v-c3d8bbfa {
+.login-page.data-v-c3d8bbfa {
   width: 100%;
   height: 100%;
+  background-color: #F2F2F2;
 }
-.login-page .login-page-container .content .user-info-plate .avatar .image-wrap .image.data-v-c3d8bbfa {
+.login-page .login-top.data-v-c3d8bbfa {
+  padding-top: 80rpx;
+  padding-bottom: 180rpx;
+  background-color: #3781C3;
+}
+.login-page .login-top .logo.data-v-c3d8bbfa {
+  margin: 0 auto;
+  padding-top: 20rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+.login-page .login-top .logo .img.data-v-c3d8bbfa {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
-.login-page .login-page-container .content .user-info-plate .user-name.data-v-c3d8bbfa {
-  margin-top: 20rpx;
-  font-size: 28rpx;
-  color: #666;
-}
-.login-page .login-page-container .content .login-plate.data-v-c3d8bbfa {
-  display: flex;
-  flex-direction: column;
-}
-.login-page .login-page-container .content .login-plate .login-plate-item.data-v-c3d8bbfa {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 10rpx 20rpx;
-}
-.login-page .login-page-container .content .login-plate .phone.data-v-c3d8bbfa {
-  border-bottom: 2rpx solid #f1f1f1;
-}
-.login-page .login-page-container .content .login-plate .phone .label.data-v-c3d8bbfa {
-  margin-right: 32rpx;
-  font-size: 28rpx;
-  color: #000;
-}
-.login-page .login-page-container .content .login-plate .phone .input.data-v-c3d8bbfa {
-  flex: 1;
-}
-.login-page .login-page-container .content .login-plate .code.data-v-c3d8bbfa {
-  border-bottom: 2rpx solid #f1f1f1;
-}
-.login-page .login-page-container .content .login-plate .code .icon.data-v-c3d8bbfa {
-  margin-right: 20rpx;
-}
-.login-page .login-page-container .content .login-plate .code .input.data-v-c3d8bbfa {
-  flex: 1;
-}
-.login-page .login-page-container .content .login-plate .code .get-code.data-v-c3d8bbfa {
-  margin-left: 32rpx;
-  font-size: 26rpx;
-  color: #000;
-}
-.login-page .login-page-container .content .login-plate .login-btn.data-v-c3d8bbfa {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 60rpx;
-}
-.login-page .login-page-container .content .login-plate .login-btn .btn-wrap.data-v-c3d8bbfa {
-  width: 100%;
-  padding: 20rpx 0;
-  text-align: center;
-  background-color: #EBD32B;
-  border-radius: 48rpx;
-}
-.login-page .login-page-container .content .login-plate .login-btn .btn-wrap .btn.data-v-c3d8bbfa {
-  font-size: 36rpx;
-  color: #888;
-}
-.login-page .login-page-container .content .login-plate .change-type.data-v-c3d8bbfa {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 30rpx;
-  font-size: 28rpx;
-  color: #666;
-}
-.login-page .login-page-container .tips.data-v-c3d8bbfa {
-  display: flex;
-  align-items: flex-start;
-  /* radio 边框颜色 */
-  /* radio 选中后的样式 */
-  /* radio 选中后的图标样式*/
-}
-.login-page .login-page-container .tips .choose-tips.data-v-c3d8bbfa {
-  flex-shrink: 0;
-  -webkit-transform: translate(0, -4rpx);
-          transform: translate(0, -4rpx);
-}
-.login-page .login-page-container .tips .tips-content.data-v-c3d8bbfa {
-  flex: 1;
-  font-size: 26rpx;
-}
-.login-page .login-page-container .tips.data-v-c3d8bbfa uni-radio .uni-radio-input {
-  border-color: #C0C2C9 !important;
-}
-.login-page .login-page-container .tips uni-radio .uni-radio-input.uni-radio-input-checked.data-v-c3d8bbfa {
-  background-color: #248067 !important;
-  border-color: #248067 !important;
-  background-clip: content-box !important;
-  padding: 6rpx !important;
+.login-page .login-content .content-wrap.data-v-c3d8bbfa {
+  margin: 0 auto;
+  padding: 40rpx 60rpx;
+  width: 90%;
+  color: #8F8D8B;
+  border-radius: 24rpx;
+  background-color: #fff;
   box-sizing: border-box;
+  -webkit-transform: translate(0, -25%);
+          transform: translate(0, -25%);
 }
-.login-page .login-page-container .tips uni-radio .uni-radio-input.uni-radio-input-checked.data-v-c3d8bbfa::before {
-  display: none !important;
+.login-page .login-content .content-wrap text.data-v-c3d8bbfa {
+  line-height: 1.8em;
+  font-size: 32rpx;
+}
+.login-page .login-content .content-wrap .spot.data-v-c3d8bbfa {
+  display: inline-block;
+  margin-right: 10rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #8F8D8B;
+}
+.login-page .login-content .content-wrap .agreement.data-v-c3d8bbfa {
+  color: #3781C3;
+}
+.login-page .login-content .content-wrap .login-btn.data-v-c3d8bbfa {
+  margin-top: 88rpx;
+  padding: 4rpx 0;
+  font-size: 32rpx;
+  color: #fff;
+  border: none;
+  border-radius: 48rpx;
+  background-color: #07C160;
 }
 

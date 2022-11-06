@@ -168,6 +168,9 @@ export default{
 				url:'/pages/index/register'
 			})
 		},
+		forgetPsw(){
+			
+		},
 		//改变登录方式
 		changeLoginType(type){
 			this.loginType = type
@@ -226,8 +229,11 @@ export default{
 			}).then(res =>{
 				console.log(res);
 				if(res.result.code == 200){
+					uni.setStorageSync('islogin',true)
 					that.$globalData.toast({title:'登录成功'}).then(res =>{
-						uni.navigateBack()
+						uni.switchTab({
+							url:'/pages/index/mine'
+						})
 					})
 				}else{
 					that.$globalData.toast({title:res.result.message})

@@ -1,0 +1,75 @@
+{
+  "passwordSecret": "passwordSecret-demo",
+  "tokenSecret": "tokenSecret-demo", 
+  "tokenExpiresIn": 7200, 
+  "tokenExpiresThreshold": 3600, 
+  "bindTokenToDevice": false, 
+  "passwordErrorLimit": 6, 
+  "passwordErrorRetryTime": 3600, 
+  "autoSetInviteCode": false,
+  "forceInviteCode": false, 
+  "removePermissionAndRoleFromToken": false, 
+  "preferedAppPlatform": "app", 
+  "preferedWebPlatform": "web",
+  "app": { 
+    "tokenExpiresIn": 2592000,
+    "tokenExpiresThreshold": 864000,
+    "oauth": {
+      "weixin": {
+        "appid": "wxebbdb7a9bdcad3de",
+        "appsecret": "4569eaa31ed232b2d69974a436fa47a4"
+      },
+      "qq": {
+        "appid": "qq appid",
+        "appsecret": "qq appsecret"
+      },
+      "apple": {
+        "bundleId": "your bundleId"
+      }
+    }
+  },
+  "mp-weixin": {
+    "tokenExpiresIn": 259200,
+    "tokenExpiresThreshold": 86400,
+    "oauth": {
+      "weixin": {
+        "appid": "wxebbdb7a9bdcad3de",
+        "appsecret": "4569eaa31ed232b2d69974a436fa47a4"
+      }
+    }
+  },
+  "mp-qq": {
+    "tokenExpiresIn": 259200,
+    "tokenExpiresThreshold": 86400,
+    "oauth": {
+      "qq": {
+        "appid": "qq appid",
+        "appsecret": "qq appsecret"
+      }
+    }
+  },
+  "mp-alipay": {
+    "tokenExpiresIn": 259200,
+    "tokenExpiresThreshold": 86400,
+    "oauth": {
+      "alipay": {
+        "appid": "alipay appid",
+        "privateKey": "alipay privateKey", 
+        "keyType": "PKCS8" 
+      }
+    }
+  },
+  "service": {
+    "sms": {
+      "name": "cc", 
+      "codeExpiresIn": 180, 
+      "smsKey": "your sms key", 
+      "smsSecret": "your sms secret" 
+    },
+    "univerify": {
+      "appid": "wxebbdb7a9bdcad3de",
+      "apiKey": "bcfedc9f427b0669603fedf09df9ca6c", 
+      "apiSecret": "4569eaa31ed232b2d69974a436fa47a4"
+    }
+  }
+}

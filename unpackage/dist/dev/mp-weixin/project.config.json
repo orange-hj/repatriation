@@ -6,7 +6,11 @@
   },
   "setting": {
     "urlCheck": false,
-    "ignoreUploadUnusedFiles": true,
+    "es6": true,
+    "postcss": false,
+    "minified": true,
+    "newFeature": true,
+    "bigPackageSizeSupport": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -14,8 +18,8 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "2.27.0",
-  "appid": "touristappid",
+  "libVersion": "2.27.1",
+  "appid": "wxebbdb7a9bdcad3de",
   "projectname": "Repatriation",
   "condition": {},
   "editorSetting": {

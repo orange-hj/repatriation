@@ -5,7 +5,8 @@
     "pages/index/match",
     "pages/index/mine",
     "pages/index/login",
-    "pages/index/otherLogin"
+    "pages/index/otherLogin",
+    "pages/index/register"
   ],
   "subPackages": [],
   "window": {
