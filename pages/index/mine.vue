@@ -27,10 +27,28 @@
 </template>
 
 <script>
+import { getUserInfo } from '@/api/user/user.js'
 export default{
 	data(){
 		return{
 			
+		}
+	},
+	onLoad(){
+		this.fetchData()
+	},
+	methods:{
+		fetchData(){
+			let token = uni.getStorageSync('token');
+			uni.request({
+				url:'https://9f4ac7c2-5851-4e96-bf4d-26837649e2dc.bspapp.com/getUserInfo',
+				method:"GET",
+				header:{Authorization: `Bearer ${token}`},
+				data:{},
+				success(res) {
+					console.log(res);
+				}
+			})
 		}
 	}
 }

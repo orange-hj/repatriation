@@ -70,13 +70,10 @@
 					index,
 					pagePath
 				}
-
 				if (this.$route?.path !== url) {
-					// this.__path__ = this.$route.path
 					if (url == '/pages/index/mine' && !uni.getStorageSync('isLogin')) {
 						console.log('tologin');
 						uni.navigateTo({
-							// url:'/pages/index/login'
 							url: '/pages/index/login'
 						})
 						return
@@ -87,10 +84,8 @@
 						detail
 					})
 				} else {
-					// UniServiceJSBridge.emit('onTabItemTap', detail)
 				}
 				this.selectedIndex = index
-				// this.$emit('switchTab', detail)
 			}
 		},
 	}

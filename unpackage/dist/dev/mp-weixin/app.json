@@ -8,7 +8,14 @@
     "pages/index/otherLogin",
     "pages/index/register"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "pages/login",
+      "pages": [
+        "setInfo"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

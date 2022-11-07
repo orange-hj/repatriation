@@ -1,10 +1,10 @@
+import http from '@/utils/http.js'
 
-export function registerPSW(data){
-	return uniCloud.callFunction({
-		name:'user',
-		data:data,
-		success:(res) => {
-			console.log(res);
-		}
+
+export function getUserInfo(){
+	return http({
+		url:"/getUserInfo",
+		method:'GET',
+		showLoading:false
 	})
 }

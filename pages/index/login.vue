@@ -48,12 +48,13 @@ export default {
 			login().then(res =>{
 				getToken({code:res.code}).then(res =>{
 					console.log(res);
-					if(!res.result.token) return
-					uni.setStorageSync('token',res.result.token)
 					uni.hideLoading()
+					uni.setStorageSync('isLogin',true)
+					uni.setStorageSync('token',res.result.token)
+					uni.setStorageSync('userInfo',res.result.userInfo)
 					this.$globalData.toast({title:'登录成功'}).then(res =>{
 						uni.switchTab({
-							url:'/pages/index/mine'
+							url:'/pages/index/home'
 						})
 					})
 				}).catch(err =>{
