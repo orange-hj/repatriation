@@ -4,7 +4,6 @@
 		<view class="home-page-container">
 			home
 		</view>
-		<tab-bar></tab-bar>
 	</view>
 </template>
 
@@ -16,7 +15,7 @@ export default{
 		}
 	},
 	onLoad() {
-		uni.hideTabBar()
+
 	},
 	methods:{
 		

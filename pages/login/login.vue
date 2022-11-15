@@ -46,6 +46,7 @@ export default {
 				title:"登录中"
 			})
 			login().then(res =>{
+				console.log(res);
 				getToken({code:res.code}).then(res =>{
 					console.log(res);
 					uni.hideLoading()
@@ -62,9 +63,11 @@ export default {
 					this.$globalData.toast({title:'登录失败'}).then(res =>{})
 				})
 			},err =>{
+				console.log('login');
 				uni.hideLoading()
 				this.$globalData.toast({title:'登录失败'}).then(res =>{})
 			}).catch(err =>{
+				console.log('login1');
 				uni.hideLoading()
 				this.$globalData.toast({title:'登录失败'}).then(res =>{})
 			})

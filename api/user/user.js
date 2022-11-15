@@ -8,3 +8,12 @@ export function getUserInfo(){
 		showLoading:false
 	})
 }
+
+export function getUserInfos(){
+	return http({
+		url:"/getUserInfo",
+		method:'GET',
+		showLoading:false
+	})
+}
+

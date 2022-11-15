@@ -7,20 +7,15 @@ const http = ({url, data = {}, method = 'GET', showLoading = false, wait = 1000}
 	let newUrl = config.BaseUrl + url
 	let token = uni.getStorageSync('token');
 	let header = {
-		// 'content-type': 'application/x-www-form-urlencoded', // 默认值
-		// 自定义请求头
-		// 'access-token': app.globalData.access_token, // 访问令牌
-		// 'user-token': app.globalData.user_token, // 登录令牌
-		// 'version': 'v1.0' // 版本号
-		Authorization: `Bearer ${token}`
+		token:token
 	}
 	
 	//白名单判断遍历
-	config.WhiteList.forEach(item => {
-		if(url.indexOf(item) > -1){
-			return header = {}
-		}
-	})
+	// config.WhiteList.forEach(item => {
+	// 	if(url.indexOf(item) > -1){
+	// 		return header = {}
+	// 	}
+	// })
 	
 	//请求
 	if(showLoading){
@@ -35,10 +30,10 @@ const http = ({url, data = {}, method = 'GET', showLoading = false, wait = 1000}
 			data:data,
 			header:header,
 			success:function(res){
-				if(res.data.code == 401 || res.data.code == 1009){
+				if(res.data.code == 401 || res.data.code == 1001){
 					
 				}
-				resolve(res)
+				resolve(res.data)
 			},
 			fail:function(err){
 				reject(err)

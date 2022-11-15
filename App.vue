@@ -3,8 +3,6 @@ import Vue from 'vue'
 export default {
 	onLaunch: function() {
 		console.log('App Launch')
-		//隐藏tabbar
-		uni.hideTabBar()
 		//小程序获取屏幕高度
 		uni.getSystemInfo({
 			success: function(e) {
@@ -81,8 +79,6 @@ export default {
 	},
 	onShow: function() {
 		console.log('App Show')
-		//隐藏tabbar
-		uni.hideTabBar()
 	},
 	onHide: function() {
 		console.log('App Hide')

@@ -1,93 +1,202 @@
 <template>
-	<view class="mine-page page-common">
+    <view class="mine-page page-common">
 		<view class="mine-page-container">
-			<view class="user-info-plate">
-				<view class="avatar">
-					<view class="image-wrap">
-						<image class="image" src="../../static/images/gaoxiao-logo.png" mode="aspectFill"></image>
+			<!-- <view class="nav">
+				<navbar navType="1" title="个人中心" ></navbar>
+			</view> -->
+			<userInfo :isLogin="isLogin" :baseInfo="baseInfo"></userInfo>
+			
+			<view class="main">
+				
+				<control :isLogin="isLogin"></control>
+				
+				<view class="my-order">
+					<view class="top">
+						<view class="title">
+							<text>我的订单</text>
+						</view>
+						<view class="more">
+							<text>查看全部订单</text>
+							<text class="icon iconfont icon-more"></text>
+						</view>
+					</view>
+					<view class="content">
+						<view class="user-control">
+							<view class="u_c_item" @click="toProfile">
+								<view class="icon">
+									<text class="iconfont icon-personal"></text>
+								</view>
+								<view class="icon_name">待付款</view>
+							</view>
+							<view class="u_c_item" @click="toCouponBag">
+								<view class="icon">
+									<text class="iconfont icon-coupon"></text>
+								</view>
+								<view class="icon_name">代发货</view>
+							</view>
+							<view class="u_c_item">
+								<view class="icon">
+									<text class="iconfont icon-collection"></text>
+								</view>
+								<view class="icon_name">待收货</view>
+							</view>
+							<view class="u_c_item" @click="toAboutUs">
+								<view class="icon">
+									<text class="iconfont icon-about"></text>
+								</view>
+								<view class="icon_name">待评价</view>
+							</view>
+							<view class="u_c_item" @click="toAboutUs">
+								<view class="icon">
+									<text class="iconfont icon-about"></text>
+								</view>
+								<view class="icon_name">退款/售后</view>
+							</view>
+						</view>
 					</view>
 				</view>
-				<view class="info">
-					<view class="title">
-						<text>名字</text>
-					</view>
-					<view class="subtitle">
-						<text>其他</text>
-					</view>
-				</view>
-				<view class="setting-btn">
-					<view class="btn-wrap">
-						<text class="iconfont"></text>
+				
+				<view class="store-center">
+					<view class="top" @click="toBusiness">
+						<view class="title">
+							<text>商家中心</text>
+						</view>
+						<view class="more">
+							<text class="icon iconfont icon-more"></text>
+						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<tab-bar></tab-bar>
 	</view>
 </template>
 
 <script>
-import { getUserInfo } from '@/api/user/user.js'
-export default{
-	data(){
-		return{
-			
-		}
-	},
-	onLoad(){
+import navbar from "@/components/navBar.vue"
+import userInfo from "@/pages/mine/components/userInfo.vue"
+import control from "@/pages/mine/components/control.vue"
+
+import { getUserInfo } from "@/api/user/user.js"
+export default {
+	components:{ navbar,userInfo,control },
+    data() {
+        return {
+			navType:2,
+			navTitle:'个人中心',
+			navColor:'black',
+			isLogin:uni.getStorageSync('isLogin'),
+			baseInfo:null,
+        };
+    },
+	onShow(){
 		this.fetchData()
 	},
-	methods:{
+    methods: {
 		fetchData(){
-			let token = uni.getStorageSync('token');
-			uni.request({
-				url:'https://9f4ac7c2-5851-4e96-bf4d-26837649e2dc.bspapp.com/getUserInfo',
-				method:"GET",
-				header:{Authorization: `Bearer ${token}`},
-				data:{},
-				success(res) {
-					console.log(res);
-				}
+			getUserInfo().then(res =>{
+				console.log(res);
+				this.baseInfo = res.data
 			})
-		}
-	}
-}
+		},
+		toBusiness(){
+			uni.navigateTo({
+				url:'/pages/business/business'
+			})
+		},
+    }
+};
 </script>
-
 <style lang="scss" scoped>
 .mine-page{
+	background-color: #fff;
 	.mine-page-container{
-		.user-info-plate{
-			display: flex;
-			align-items: center;
-			padding: 32rpx;
-			.avatar{
-				width: 150rpx;
-				height: 150rpx;
-				border-radius: 50%;
-				.image-wrap{
-					width: 100%;
-					height: 100%;
-					.image{
-						width: 100%;
-						height: 100%;
-						border-radius: 50%;
+		display: flex;
+		flex-direction: column;
+		background-color: #fff;
+		height: 100%;
+		.main{
+			flex: 1;
+			padding: 0 24rpx;
+			background-color: #cecece;
+			border-radius: 12px 12px 0 0;
+			.my-order{
+				display: flex;
+				flex-direction: column;
+				background-color: #fff;
+				border-radius: 8px;
+				.top{
+					padding: 20rpx 32rpx;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					.title{
+						font-size: 30rpx;
+						color: #333;
+					}
+					.more{
+						font-size: 24rpx;
+						color: #999;
+						.icon{
+							font-size: 24rpx;
+							color: #999;
+						}
+					}
+				}
+				.content{
+					padding: 20rpx 32rpx;
+					.user-control{
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						background-color: #fff;
+						.u_c_item{
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							justify-content: space-between;
+							.icon{
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								line-height: 1;
+								color: #333;
+							}
+							.iconfont{
+								font-size: 36rpx;
+							}
+							.icon_name{
+								margin-top: 16rpx;
+								font-size: 26rpx;
+								color: #333;
+							}
+						}
 					}
 				}
 			}
-			.info{
-				flex: 1;
+			
+			.store-center{
+				margin-top: 24rpx;
 				display: flex;
 				flex-direction: column;
-				margin-left: 20rpx;
-				.title{
-					font-size: 32rpx;
-					font-weight: bold;
-					color: #000;
-				}
-				.subtitle{
-					font-size: 26rpx;
-					color: #999;
+				background-color: #fff;
+				border-radius: 8px;
+				.top{
+					padding: 24rpx;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					.title{
+						font-size: 30rpx;
+						color: #333;
+					}
+					.more{
+						font-size: 24rpx;
+						color: #999;
+						.icon{
+							font-size: 24rpx;
+							color: #999;
+						}
+					}
 				}
 			}
 		}

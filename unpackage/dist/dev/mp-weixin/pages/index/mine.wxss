@@ -24,38 +24,98 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.mine-page .mine-page-container .user-info-plate.data-v-3f47feae {
-  display: flex;
-  align-items: center;
-  padding: 32rpx;
+.mine-page.data-v-3f47feae {
+  background-color: #fff;
 }
-.mine-page .mine-page-container .user-info-plate .avatar.data-v-3f47feae {
-  width: 150rpx;
-  height: 150rpx;
-  border-radius: 50%;
-}
-.mine-page .mine-page-container .user-info-plate .avatar .image-wrap.data-v-3f47feae {
-  width: 100%;
-  height: 100%;
-}
-.mine-page .mine-page-container .user-info-plate .avatar .image-wrap .image.data-v-3f47feae {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-.mine-page .mine-page-container .user-info-plate .info.data-v-3f47feae {
-  flex: 1;
+.mine-page .mine-page-container.data-v-3f47feae {
   display: flex;
   flex-direction: column;
-  margin-left: 20rpx;
+  background-color: #fff;
+  height: 100%;
 }
-.mine-page .mine-page-container .user-info-plate .info .title.data-v-3f47feae {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #000;
+.mine-page .mine-page-container .main.data-v-3f47feae {
+  flex: 1;
+  padding: 0 24rpx;
+  background-color: #cecece;
+  border-radius: 12px 12px 0 0;
 }
-.mine-page .mine-page-container .user-info-plate .info .subtitle.data-v-3f47feae {
+.mine-page .mine-page-container .main .my-order.data-v-3f47feae {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.mine-page .mine-page-container .main .my-order .top.data-v-3f47feae {
+  padding: 20rpx 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mine-page .mine-page-container .main .my-order .top .title.data-v-3f47feae {
+  font-size: 30rpx;
+  color: #333;
+}
+.mine-page .mine-page-container .main .my-order .top .more.data-v-3f47feae {
+  font-size: 24rpx;
+  color: #999;
+}
+.mine-page .mine-page-container .main .my-order .top .more .icon.data-v-3f47feae {
+  font-size: 24rpx;
+  color: #999;
+}
+.mine-page .mine-page-container .main .my-order .content.data-v-3f47feae {
+  padding: 20rpx 32rpx;
+}
+.mine-page .mine-page-container .main .my-order .content .user-control.data-v-3f47feae {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+.mine-page .mine-page-container .main .my-order .content .user-control .u_c_item.data-v-3f47feae {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.mine-page .mine-page-container .main .my-order .content .user-control .u_c_item .icon.data-v-3f47feae {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  color: #333;
+}
+.mine-page .mine-page-container .main .my-order .content .user-control .u_c_item .iconfont.data-v-3f47feae {
+  font-size: 36rpx;
+}
+.mine-page .mine-page-container .main .my-order .content .user-control .u_c_item .icon_name.data-v-3f47feae {
+  margin-top: 16rpx;
   font-size: 26rpx;
+  color: #333;
+}
+.mine-page .mine-page-container .main .store-center.data-v-3f47feae {
+  margin-top: 24rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+}
+.mine-page .mine-page-container .main .store-center .top.data-v-3f47feae {
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mine-page .mine-page-container .main .store-center .top .title.data-v-3f47feae {
+  font-size: 30rpx;
+  color: #333;
+}
+.mine-page .mine-page-container .main .store-center .top .more.data-v-3f47feae {
+  font-size: 24rpx;
+  color: #999;
+}
+.mine-page .mine-page-container .main .store-center .top .more .icon.data-v-3f47feae {
+  font-size: 24rpx;
   color: #999;
 }
 

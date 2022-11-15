@@ -3,16 +3,23 @@
     "pages/index/home",
     "pages/index/policy",
     "pages/index/match",
-    "pages/index/mine",
-    "pages/index/login",
-    "pages/index/otherLogin",
-    "pages/index/register"
+    "pages/index/mine"
   ],
   "subPackages": [
     {
+      "root": "pages/business",
+      "pages": [
+        "business",
+        "release"
+      ]
+    },
+    {
       "root": "pages/login",
       "pages": [
-        "setInfo"
+        "setInfo",
+        "login",
+        "otherLogin",
+        "register"
       ]
     }
   ],

@@ -1,1 +1,1 @@
-<view class="home-page"><view class="home-page-container">home</view><tab-bar vue-id="ffa1871e-1" bind:__l="__l"></tab-bar></view>
+<view class="home-page"><view class="home-page-container">home</view></view>
