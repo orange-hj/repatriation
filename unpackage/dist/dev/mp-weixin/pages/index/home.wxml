@@ -1,1 +1,1 @@
-<view class="home-page"><view class="home-page-container">home</view></view>
+<view class="home-page"><view class="home-page-container">home<view class="goods-wrap"><block wx:for="{{goodsList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="goods"><view class="image-wrap"><image src="{{item.list[0].url}}" mode="aspectFill"></image></view><view class="intro">{{'描述  \n\t\t\t\t\t\n\t\t\t\t\t'+item.intro+''}}</view><view class="price">{{'价格  '+item.price+''}}</view></view></block></view></view></view>

@@ -26,7 +26,7 @@ exports.main = async (event, context) => {
 		return {
 			code:200,
 			message:'success',
-			data:userInfo.data[0]
+			data:userInfo.data
 		}
 	}else{
 		return {

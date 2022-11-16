@@ -26,26 +26,12 @@ exports.main = async (event, context) => {
 	}else{
 		let addUID = await goods.add({
 			uid:res.uid,
+			...JSON.parse(event.body)
 		})
-		for(let i in event){
-			goods.where({_id:addUID.id}).set({
-				i:event[i]
-			})
-		}
+		
 		return {
 			data:true,
-			mas:123
+			mas:"发布成功"
 		}
 	}
-	
-	
-	return {
-		data:res,
-		mes:'false'
-	}
-	
-	// return {
-	// 	code:200,
-	// 	data:'true'
-	// }
 };
