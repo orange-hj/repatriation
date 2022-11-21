@@ -4,6 +4,8 @@ import App from './App'
 import tabBar from 'components/tabbar.vue'
 Vue.component('tab-bar',tabBar) //挂载
 
+import uView from '@/uni_modules/uview-ui'
+Vue.use(uView)
 
 // #ifndef VUE3
 import Vue from 'vue'

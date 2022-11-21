@@ -94,6 +94,20 @@ export default {
 		font-family:"微软雅黑";
 		height: 100%;
 	}
-	
+	.nav{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 1001;
+	}
+	.borderBottom{
+		border-bottom: 2rpx solid #f1f2f3;
+	}
+	.checkActive{
+		opacity: 0.8;
+	}
+	.checkActive-plate{
+		background: rgba(0, 0, 0, 0.05);
+	}
 	
 </style>

@@ -4,5 +4,9 @@
   "navigationBarBackgroundColor": "#3781C3",
   "navigationBarTextStyle": "white",
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "u-search": "/uni_modules/uview-ui/components/u-search/u-search",
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
+    "banner-plate": "/components/home/bannerPlate"
+  }
 }

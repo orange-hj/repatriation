@@ -84,11 +84,12 @@ export default {
 			navType:2,
 			navTitle:'个人中心',
 			navColor:'black',
-			isLogin:uni.getStorageSync('isLogin'),
+			isLogin:'',
 			baseInfo:null,
         };
     },
 	onShow(){
+		this.isLogin = uni.getStorageSync('isLogin')
 		this.fetchData()
 	},
     methods: {
