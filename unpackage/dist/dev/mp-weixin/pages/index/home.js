@@ -98,10 +98,10 @@ var components
 try {
   components = {
     uSearch: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 230))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 238))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 238))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 246))
     }
   }
 } catch (e) {
@@ -163,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -339,7 +339,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlate = function bannerPlate() {__webpack_require__.e(/*! require.ensure | components/home/bannerPlate */ "components/home/bannerPlate").then((function () {return resolve(__webpack_require__(/*! @/components/home/bannerPlate */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlate = function bannerPlate() {__webpack_require__.e(/*! require.ensure | components/home/bannerPlate */ "components/home/bannerPlate").then((function () {return resolve(__webpack_require__(/*! @/components/home/bannerPlate */ 254));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: { bannerPlate: bannerPlate },
   data: function data() {
@@ -383,6 +385,12 @@ var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlat
         console.log(res);
         _this.goodsList = res.data;
       });
+      // uniCloud.callFunction({
+      // 	name:"goodsList",
+      // 	success: function(res){
+      // 		console.log(res);
+      // 	}
+      // })
     },
     //关闭弹窗
     close: function close() {
@@ -397,7 +405,13 @@ var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlat
     },
     toShare: function toShare() {
 
+    },
+    toDetail: function toDetail(item) {
+      uni.navigateTo({
+        url: '/pages/common-detail/goodsDetail?id=' + item.id });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

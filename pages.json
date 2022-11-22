@@ -63,6 +63,19 @@
 			]
 		},
 		{
+			"root": "pages/common-detail",
+			"pages": [
+				{
+					"path": "goodsDetail",
+					"style": {
+						"navigationBarTitleText": "商品详情",
+						"enablePullDownRefresh": false,
+						"navigationBarTextStyle": "black"
+					}
+				}
+			]
+		},
+		{
 			"root": "pages/login",
 			"pages": [
 				{

@@ -85,7 +85,7 @@ export default{
 							console.log(res);
 							this.src = res.fileID
 							this.list.push({
-								url:res.filePath,
+								url:res.fileID,
 								originalName:res.fileID
 							})
 						}

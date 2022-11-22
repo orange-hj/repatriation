@@ -134,31 +134,33 @@
 							</view>
 						</view>
 						<view class="goods-list">
-							<view class="goods-item" v-for="(item,index) in goodsList" :key="index">
+							<view class="goods-item" v-for="(item,index) in goodsList" :key="index" @click="toDetail(item)">
 								<view class="image-wrap">
-									<image class="image" :src="item.list[0].url" mode="widthFix"></image>
+									<image class="image" :src="item.goodsImage" mode="aspectFill"></image>
 								</view>
 								<view class="info-wrap">
 									<view class="item-title">
-										{{item.name || ''}}
+										{{item.name || '名字'}}
 									</view>
-									<view class="item-intro">
-										{{item.intro || ''}}
+									<view class="item-label" v-if="item.label">
+										{{item.label || ''}}
 									</view>
 									<view class="item-subtitle">
-										<view class="item-time">
-											价格：{{item.price}}
+										<view class="item-price">
+											<text class="text">￥</text>
+											<text class="price">{{item.price}}</text>
 										</view>
-										<!-- <view class="item-foot">
-											<view class="item-address">
-												<text class="icon iconfont icon-tag-position"></text>
-												<text class="text">{{item.matchAddress || ''}}</text>
-											</view>
-											<view class="item-view">
-												<text class="icon iconfont icon-browse"></text>
-												<text class="text">{{item.views || ''}}</text>
-											</view>
-										</view> -->
+										
+									</view>
+								</view>
+								<view class="user-wrap">
+									<view class="image-wrap">
+										<image class="image" :src="item.avatar" mode="aspectFill"></image>
+									</view>
+									<view class="user-info">
+										<view class="user-name">
+											<text class="text">{{item.nickName}}</text>
+										</view>
 									</view>
 								</view>
 							</view>
@@ -218,6 +220,12 @@ export default{
 				console.log(res);
 				this.goodsList = res.data
 			})
+			// uniCloud.callFunction({
+			// 	name:"goodsList",
+			// 	success: function(res){
+			// 		console.log(res);
+			// 	}
+			// })
 		},
 		//关闭弹窗
 		close(){
@@ -233,6 +241,11 @@ export default{
 		toShare(){
 			
 		},
+		toDetail(item){
+			uni.navigateTo({
+				url:'/pages/common-detail/goodsDetail?id=' + item.id
+			})
+		}
 	}
 }
 </script>
@@ -545,74 +558,77 @@ export default{
 							margin-right: 0;
 						}
 						.goods-item{
-							width: 39%;
-							padding: 40rpx 32rpx;
+							width: 48%;
 							margin-right: 20rpx;
 							margin-bottom: 20rpx;
+							padding-bottom: 24rpx;
 							background-color: #fff;
 							border-radius: 24rpx;
 							box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+							box-sizing: border-box;
 							.image-wrap{
 								width: 100%;
+								height: 240rpx;
 								.image{
 									width: 100%;
 									height: 100%;
-									border-radius: 12px;
+									border-radius: 24rpx 24rpx 0 0;
 								}
 							}
 							.info-wrap{
+								padding: 0 24rpx;
 								flex: 1;
 								display: flex;
 								flex-direction: column;
 								justify-content: space-between;
 								.item-title{
-									margin-top: 24rpx;
-									line-height: 44rpx;
-									font-size: 32rpx;
-									white-space: pre-wrap;
+									padding: 12rpx 0 8rpx;
+									font-size: 30rpx;
 									font-weight: bold;
 									color: #1D1E2C;
+									@include overflow-line(2)
+								}
+								.item-label{
+									font-size: 24rpx;
+									color: #69707F;
+									@include overflow-line(2)
 								}
 								.item-subtitle{
 									display: flex;
 									flex-direction: column;
-									.item-time{
-										margin-top: 8rpx;
-										line-height: 40rpx;
-										font-size: 26rpx;
-										color: #69707F;
+									.item-price{
+										font-size: 24rpx;
+										font-weight: bold;
+										color: #FF9200;
+										.price{
+											font-size: 34rpx;
+										}
 									}
-									.item-foot{
-										margin-top: 24rpx;
-										display: flex;
-										justify-content: space-between;
-										align-items: center;
-										.item-address{
-											display: flex;
-											align-items: center;
-											.icon{
-												margin-right: 8rpx;
-												font-size: 26rpx;
-												color: #69707F;
-											}
-											.text{
-												font-size: 26rpx;
-												color: #69707F;
-											}
-										}
-										.item-view{
-											display: flex;
-											align-items: center;
-											.icon{
-												margin-right: 8rpx;
-												font-size: 26rpx;
-												color: #69707F;
-											}
-											.text{
-												font-size: 26rpx;
-												color: #69707F;
-											}
-										}
+								}
+							}
+							.user-wrap{
+								padding: 0 24rpx;
+								margin-top: 12rpx;
+								display: flex;
+								align-items: stretch;
+								.image-wrap{
+									flex-shrink: 0;
+									margin-right: 12rpx;
+									width: 32rpx;
+									height: 32rpx;
+									border-radius: 50%;
+									.image{
+										width: 100%;
+										height: 100%;
+										border-radius: 50%;
+									}
+								}
+								.user-info{
+									flex: 1;
+									display: flex;
+									.user-name{
+										font-size: 24rpx;
+										color: #69707F;
 									}
 								}
 							}
