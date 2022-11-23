@@ -98,10 +98,10 @@ var components
 try {
   components = {
     uSearch: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 238))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 240))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 246))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 248))
     }
   }
 } catch (e) {
@@ -341,7 +341,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlate = function bannerPlate() {__webpack_require__.e(/*! require.ensure | components/home/bannerPlate */ "components/home/bannerPlate").then((function () {return resolve(__webpack_require__(/*! @/components/home/bannerPlate */ 254));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlate = function bannerPlate() {__webpack_require__.e(/*! require.ensure | components/home/bannerPlate */ "components/home/bannerPlate").then((function () {return resolve(__webpack_require__(/*! @/components/home/bannerPlate */ 256));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: { bannerPlate: bannerPlate },
   data: function data() {

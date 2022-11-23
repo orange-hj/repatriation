@@ -1,9 +1,6 @@
 <template>
     <view class="mine-page page-common">
 		<view class="mine-page-container">
-			<!-- <view class="nav">
-				<navbar navType="1" title="个人中心" ></navbar>
-			</view> -->
 			<userInfo :isLogin="isLogin" :baseInfo="baseInfo"></userInfo>
 			
 			<view class="main">

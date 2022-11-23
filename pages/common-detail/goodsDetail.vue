@@ -97,7 +97,7 @@
 							卖同款
 						</view>
 					</view>
-					<view class="btn-wrap">
+					<view class="btn-wrap" @click="toChatDetail">
 						<view class="btn want">
 							我想要
 						</view>
@@ -154,6 +154,12 @@ export default{
 			}else{
 				this.$globalData.toast({title:"取消收藏"})
 			}
+		},
+		//我想要
+		toChatDetail(){
+			uni.navigateTo({
+				url:'/pages/common-detail/chatDetail?id=' + this.id
+			})
 		}
 	}
 }

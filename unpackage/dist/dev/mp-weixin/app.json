@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/home",
     "pages/index/policy",
-    "pages/index/match",
+    "pages/index/information",
     "pages/index/mine"
   ],
   "subPackages": [
@@ -16,7 +16,8 @@
     {
       "root": "pages/common-detail",
       "pages": [
-        "goodsDetail"
+        "goodsDetail",
+        "chatDetail"
       ]
     },
     {
@@ -55,8 +56,8 @@
       {
         "selectedIconPath": "static/icon/match_selected.png",
         "iconPath": "static/icon/match.png",
-        "pagePath": "pages/index/match",
-        "text": "赛事"
+        "pagePath": "pages/index/information",
+        "text": "消息"
       },
       {
         "selectedIconPath": "static/icon/user_selected.png",

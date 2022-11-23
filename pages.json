@@ -21,9 +21,9 @@
 			}
 		},
 		{
-			"path": "pages/index/match",
+			"path": "pages/index/information",
 			"style": {
-				"navigationBarTitleText": "赛事",
+				"navigationBarTitleText": "信息",
 				"enablePullDownRefresh": false,
 				"navigationBarTextStyle": "black",
 				"navigationStyle":"custom"
@@ -71,6 +71,15 @@
 						"navigationBarTitleText": "商品详情",
 						"enablePullDownRefresh": false,
 						"navigationBarTextStyle": "black"
+					}
+				},
+				{
+					"path": "chatDetail",
+					"style": {
+						"navigationBarTitleText": "聊天",
+						"enablePullDownRefresh": false,
+						"navigationBarTextStyle": "black",
+						"navigationStyle":"custom"
 					}
 				}
 			]
@@ -144,8 +153,8 @@
 			{
 				"selectedIconPath": "static/icon/match_selected.png",
 				"iconPath": "static/icon/match.png",
-				"pagePath": "pages/index/match",
-				"text": "赛事"
+				"pagePath": "pages/index/information",
+				"text": "消息"
 			},
 			{
 				"selectedIconPath": "static/icon/user_selected.png",
