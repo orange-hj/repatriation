@@ -48,29 +48,60 @@
 			<view class="bottom">
 				<scroll-view>
 					<view class="" style="padding-top: 60rpx;"></view>
-					<view class="time">
-						17:44
+					<view class="chat-list">
+						<view class="chat-item" v-for="(item,index) in chatList" :key="index">
+							<view class="time" v-if="item.time">17:44</view>
+							<view class="left" v-if="item.receiver">
+								<view class="image-wrap">
+									<image class="image" src="" mode="aspectFill"></image>
+								</view>
+								<view class="content">
+									aa
+								</view>
+							</view>
+							<view class="right" v-if="item.sender">
+								<view class="content">
+									bb
+								</view>
+								<view class="image-wrap">
+									<image class="image" src="" mode="aspectFill"></image>
+								</view>
+							</view>
+						</view>
 					</view>
 				</scroll-view>
 			</view>
 		</view>
 		
-		<!-- <view class="foot">
+		<view class="foot">
 			<view class="foot-wrap">
 				<view class="item">
-					
+					<text class="icon iconfont icon-add"></text>
 				</view>
-				<view class="search-wrap">
-					
+				<view class="input-wrap">
+					<view class="input">
+						<u--textarea
+							v-model="chatValue"
+							placeholder="想跟他说点什么..."
+							fixed="true"
+							autoHeight
+							border="none"
+						></u--textarea>
+					</view>
 				</view>
 				<view class="item">
 					
 				</view>
-				<view class="item">
-					
+				<view class="item" v-if="!chatValue.length">
+					<text class="icon iconfont icon-add"></text>
+				</view>
+				<view class="btn-wrap" v-else>
+					<view class="btn" @click="send">
+						发送
+					</view>
 				</view>
 			</view>
-		</view> -->
+		</view>
 	</view>
 </template>
 
@@ -85,6 +116,9 @@ export default{
 			isShowBgc:false,				//是否固定顶部
 			
 			id:'',
+			
+			//foot
+			chatValue:'',
 		}
 	},
 	onLoad(option) {
@@ -224,5 +258,56 @@ export default{
 			}
 		}
 	}
+
+	.foot{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		box-sizing: border-box;
+		z-index: 1000;
+		.foot-wrap{
+			width: 100%;
+			display: flex;
+			align-items: center;
+			padding:  32rpx;
+			box-sizing: border-box;
+			.item{
+				flex-shrink: 0;
+			}
+			.input-wrap{
+				position: relative;
+				flex: 1;
+				height: 68rpx;
+				margin: 0 32rpx;
+				border-radius: 24rpx;
+				background-color: #fff;
+				.input{
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					display: flex;
+					align-items: center;
+				}
+				/deep/.u-textarea{
+					padding: 0 24rpx;
+					border-radius: 24rpx;
+				}
+			}
+			.btn-wrap{
+				padding: 10rpx 24rpx;
+				background-color: yellow;
+				border-radius: 48rpx;
+				.btn{
+					font-size: 28rpx;
+					font-weight: bold;
+					color: $title-color;
+				}
+			}
+		}
+	}
+	
 }
 </style>

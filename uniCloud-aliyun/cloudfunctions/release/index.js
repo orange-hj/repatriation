@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
 	//判断是否有token
 	if(!event.headers.token){
 		return {
-			code:1001,
+			code:401,
 			message:'未登录',
 			data:null
 		}

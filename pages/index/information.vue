@@ -55,6 +55,8 @@
 <script>
 import { infoPlate } from '@/components/common/info-plate.vue'
 import { pageList } from '@/components/common/page-list.vue'
+
+import { chatList } from '@/api/chat/chat.js'
 export default{
 	components:{ infoPlate,pageList },
 	data(){
@@ -78,10 +80,13 @@ export default{
 			subtitle:"subtitle",
 			endTime:"16-00"
 		}]
+		this.fetchData()
 	},
 	methods:{
 		fetchData(){
-			
+			chatList().then(res =>{
+				console.log(res);
+			})
 		}
 	}
 }

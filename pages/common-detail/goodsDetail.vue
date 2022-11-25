@@ -110,6 +110,7 @@
 
 <script>
 import { getGoodsDetail } from '@/api/goods/goods.js'
+import { createChat } from '@/api/chat/chat.js'
 export default{
 	data(){
 		return{
@@ -157,6 +158,9 @@ export default{
 		},
 		//我想要
 		toChatDetail(){
+			createChat({goodsId:this.id}).then(res =>{
+				console.log(res);
+			})
 			uni.navigateTo({
 				url:'/pages/common-detail/chatDetail?id=' + this.id
 			})

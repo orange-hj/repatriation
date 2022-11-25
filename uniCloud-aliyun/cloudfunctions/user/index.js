@@ -14,11 +14,11 @@ exports.main = async (event, context) => {
 		}
 	}
 	const res = await uniID.getUserInfoByToken(event.headers.token)
-	if(!res.uid){
+	if(res.code != 0){
 		return {
-			code:200,
-			message:'未查询到uid',
-			data:null
+			code:401,
+			message:'请重新登录',
+			data:res
 		}
 	}
 	let userInfo = await collection.where({uid:res.uid}).get()
@@ -26,7 +26,7 @@ exports.main = async (event, context) => {
 		return {
 			code:200,
 			message:'success',
-			data:userInfo.data
+			data:userInfo.data[0]
 		}
 	}else{
 		return {

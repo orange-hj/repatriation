@@ -1430,7 +1430,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8518,7 +8518,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8539,14 +8539,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8632,7 +8632,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"Repatriation","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9064,9 +9064,9 @@ internalMixin(Vue);
         "127.0.0.1",
         "192.168.1.101"
     ],
-    "debugPort": 62784,
+    "debugPort": 60653,
     "initialLaunchType": "local",
-    "servePort": 62785,
+    "servePort": 60654,
     "skipFiles": [
         "<node_internals>/**/*.js",
         "D:/program file/HbuilderX/HBuilderX/plugins/unicloud/**/*.js"
@@ -18392,7 +18392,8 @@ function getGoodsDetail(data) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 var _config = _interopRequireDefault(__webpack_require__(/*! @/config.js */ 147));
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var interaction = _interopRequireWildcard(__webpack_require__(/*! @/utils/interaction */ 148));
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 var http = function http(_ref) {var url = _ref.url,_ref$data = _ref.data,data = _ref$data === void 0 ? {} : _ref$data,_ref$method = _ref.method,method = _ref$method === void 0 ? 'GET' : _ref$method,_ref$showLoading = _ref.showLoading,showLoading = _ref$showLoading === void 0 ? false : _ref$showLoading,_ref$wait = _ref.wait,wait = _ref$wait === void 0 ? 1000 : _ref$wait;
   //设置请求参数
@@ -18408,7 +18409,6 @@ var http = function http(_ref) {var url = _ref.url,_ref$data = _ref.data,data = 
   // 		return header = {}
   // 	}
   // })
-
   //请求
   if (showLoading) {
     uni.showLoading({
@@ -18423,7 +18423,30 @@ var http = function http(_ref) {var url = _ref.url,_ref$data = _ref.data,data = 
       header: header,
       success: function success(res) {
         if (res.data.code == 401 || res.data.code == 1001) {
+          uni.clearStorageSync();
+          //获取当前页面路由
+          console.log(uni.getStorageSync('isTipsLogin'));
+          if (uni.getStorageSync('isTipsLogin')) return;
+          var routes = getCurrentPages();
+          var curRoute = routes[routes.length - 1].route;
+          console.log(curRoute);
+          if (curRoute == 'pages/index/home') return;
+          if (curRoute == 'pages/index/mine') return;
+          uni.setStorageSync('isTipsLogin', true);
+          interaction.confirm('提示', '您未登录，请前往登录', {
+            confirmText: '前往登录' }).
 
+          then(function (res) {
+            if (res) {
+              uni.setStorageSync('isTipsLogin', false);
+              uni.navigateTo({
+                url: '/pages/authentication/login' });
+
+            } else {
+              uni.setStorageSync('isTipsLogin', false);
+              uni.navigateBack();
+            }
+          });
         }
         resolve(res.data);
       },
@@ -18486,7 +18509,86 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 148 */,
+/* 148 */
+/*!*****************************************************************************!*\
+  !*** D:/project file/my-project/uniCloud/Repatriation/utils/interaction.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.alert = alert;exports.alertErr = alertErr;exports.alertError = alertError;exports.confirm = confirm;exports.dangerConfirm = dangerConfirm;exports.toast = toast;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function alert() {for (var _len = arguments.length, msgs = new Array(_len), _key = 0; _key < _len; _key++) {msgs[_key] = arguments[_key];}
+  // console.log("alert", arguments);
+  var content = msgs[0] && msgs[1] ? msgs[1] : msgs[0];
+  if (typeof content == 'object') content = content.message || content.errMsg || content;
+  return new Promise(function (resolve, reject) {
+    uni.showModal({
+      title: msgs[1] && msgs[0] ? msgs[0] : '提示',
+      content: content,
+      confirmText: msgs[2] || '确定',
+      showCancel: false,
+
+      success: function success() {
+        resolve();
+      },
+
+      fail: function fail(e) {
+        reject(e);
+      } });
+
+  });
+}
+function alertErr(msg, err) {
+  return alert(msg, err.message || err.errMsg || '');
+}
+function alertError(msg, err) {
+  return alertErr(msg, err);
+}
+function confirm(title, message) {var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  return new Promise(function (resolve, reject) {
+    uni.showModal(_objectSpread(_objectSpread({
+      title: title,
+      content: message },
+    options), {}, {
+      showCancel: true,
+
+      success: function success(res) {
+        resolve(res.confirm);
+      },
+
+      fail: function fail(e) {
+        reject(e);
+      } }));
+
+  });
+}
+function dangerConfirm(title, message) {var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  return confirm(title, message, _objectSpread({
+    confirmColor: '#ff0000' },
+  options));
+
+}
+function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;var icon = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'success';var mask = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+  return new Promise(function (resolve, reject) {
+    uni.showToast({
+      title: title,
+      mask: mask,
+      icon: icon,
+      duration: duration,
+
+      success: function success() {
+        setTimeout(resolve, duration);
+      },
+
+      fail: function fail(e) {
+        reject(e);
+      } });
+
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
 /* 149 */,
 /* 150 */,
 /* 151 */,
@@ -18508,7 +18610,8 @@ module.exports = {
 /* 167 */,
 /* 168 */,
 /* 169 */,
-/* 170 */
+/* 170 */,
+/* 171 */
 /*!*************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/api/user/user.js ***!
   \*************************************************************************/
@@ -18536,7 +18639,6 @@ function getUserInfos() {
 }
 
 /***/ }),
-/* 171 */,
 /* 172 */,
 /* 173 */,
 /* 174 */,
@@ -18552,7 +18654,8 @@ function getUserInfos() {
 /* 184 */,
 /* 185 */,
 /* 186 */,
-/* 187 */
+/* 187 */,
+/* 188 */
 /*!**********************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/utils/util.js ***!
   \**********************************************************************/
@@ -19099,7 +19202,7 @@ function getDate(type) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 188 */
+/* 189 */
 /*!*******************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/api/release/release.js ***!
   \*******************************************************************************/
@@ -19119,7 +19222,6 @@ function release(data) {
 }
 
 /***/ }),
-/* 189 */,
 /* 190 */,
 /* 191 */,
 /* 192 */,
@@ -19128,7 +19230,35 @@ function release(data) {
 /* 195 */,
 /* 196 */,
 /* 197 */,
-/* 198 */,
+/* 198 */
+/*!*************************************************************************!*\
+  !*** D:/project file/my-project/uniCloud/Repatriation/api/chat/chat.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.createChat = createChat;exports.chatList = chatList;var _http = _interopRequireDefault(__webpack_require__(/*! @/utils/http.js */ 146));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+//创建聊天
+function createChat(data) {
+  return (0, _http.default)({
+    url: "/createChat",
+    method: 'GET',
+    data: data });
+
+}
+
+//聊天列表
+function chatList(data) {
+  return (0, _http.default)({
+    url: "/chatList",
+    method: 'GET',
+    data: data });
+
+}
+
+/***/ }),
 /* 199 */,
 /* 200 */,
 /* 201 */,
@@ -19143,7 +19273,17 @@ function release(data) {
 /* 210 */,
 /* 211 */,
 /* 212 */,
-/* 213 */
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */
 /*!***************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/api/login/login.js ***!
   \***************************************************************************/
@@ -19189,7 +19329,7 @@ function getToken(data) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 6)["default"]))
 
 /***/ }),
-/* 214 */
+/* 224 */
 /*!***************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/static/images/gaoxiao-logo.png ***!
   \***************************************************************************************/
@@ -19199,16 +19339,6 @@ function getToken(data) {
 module.exports = "/static/images/gaoxiao-logo.png";
 
 /***/ }),
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
 /* 225 */,
 /* 226 */,
 /* 227 */,
@@ -19229,7 +19359,17 @@ module.exports = "/static/images/gaoxiao-logo.png";
 /* 242 */,
 /* 243 */,
 /* 244 */,
-/* 245 */
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */
 /*!**********************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-search/props.js ***!
   \**********************************************************************************************************/
@@ -19355,14 +19495,14 @@ module.exports = "/static/images/gaoxiao-logo.png";
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */
 /*!*********************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-popup/props.js ***!
   \*********************************************************************************************************/
@@ -19449,16 +19589,6 @@ module.exports = "/static/images/gaoxiao-logo.png";
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
 /* 264 */,
 /* 265 */,
 /* 266 */,
@@ -19484,16 +19614,7 @@ module.exports = "/static/images/gaoxiao-logo.png";
 /* 286 */,
 /* 287 */,
 /* 288 */,
-/* 289 */
-/*!************************************************************************************!*\
-  !*** D:/project file/my-project/uniCloud/Repatriation/static/images/my-avatar.png ***!
-  \************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
+/* 289 */,
 /* 290 */,
 /* 291 */,
 /* 292 */,
@@ -19503,12 +19624,158 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /* 296 */,
 /* 297 */,
 /* 298 */,
-/* 299 */,
+/* 299 */
+/*!************************************************************************************!*\
+  !*** D:/project file/my-project/uniCloud/Repatriation/static/images/my-avatar.png ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
 /* 300 */,
 /* 301 */,
 /* 302 */,
 /* 303 */,
-/* 304 */
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */
+/*!************************************************************************************************************!*\
+  !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-textarea/props.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 输入框的内容
+    value: {
+      type: [String, Number],
+      default: uni.$u.props.textarea.value },
+
+    // 输入框为空时占位符
+    placeholder: {
+      type: [String, Number],
+      default: uni.$u.props.textarea.placeholder },
+
+    // 指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+    placeholderClass: {
+      type: String,
+      default: uni.$u.props.input.placeholderClass },
+
+    // 指定placeholder的样式
+    placeholderStyle: {
+      type: [String, Object],
+      default: uni.$u.props.input.placeholderStyle },
+
+    // 输入框高度
+    height: {
+      type: [String, Number],
+      default: uni.$u.props.textarea.height },
+
+    // 设置键盘右下角按钮的文字，仅微信小程序，App-vue和H5有效
+    confirmType: {
+      type: String,
+      default: uni.$u.props.textarea.confirmType },
+
+    // 是否禁用
+    disabled: {
+      type: Boolean,
+      default: uni.$u.props.textarea.disabled },
+
+    // 是否显示统计字数
+    count: {
+      type: Boolean,
+      default: uni.$u.props.textarea.count },
+
+    // 是否自动获取焦点，nvue不支持，H5取决于浏览器的实现
+    focus: {
+      type: Boolean,
+      default: uni.$u.props.textarea.focus },
+
+    // 是否自动增加高度
+    autoHeight: {
+      type: Boolean,
+      default: uni.$u.props.textarea.autoHeight },
+
+    // 如果textarea是在一个position:fixed的区域，需要显示指定属性fixed为true
+    fixed: {
+      type: Boolean,
+      default: uni.$u.props.textarea.fixed },
+
+    // 指定光标与键盘的距离
+    cursorSpacing: {
+      type: Number,
+      default: uni.$u.props.textarea.cursorSpacing },
+
+    // 指定focus时的光标位置
+    cursor: {
+      type: [String, Number],
+      default: uni.$u.props.textarea.cursor },
+
+    // 是否显示键盘上方带有”完成“按钮那一栏，
+    showConfirmBar: {
+      type: Boolean,
+      default: uni.$u.props.textarea.showConfirmBar },
+
+    // 光标起始位置，自动聚焦时有效，需与selection-end搭配使用
+    selectionStart: {
+      type: Number,
+      default: uni.$u.props.textarea.selectionStart },
+
+    // 光标结束位置，自动聚焦时有效，需与selection-start搭配使用
+    selectionEnd: {
+      type: Number,
+      default: uni.$u.props.textarea.selectionEnd },
+
+    // 键盘弹起时，是否自动上推页面
+    adjustPosition: {
+      type: Boolean,
+      default: uni.$u.props.textarea.adjustPosition },
+
+    // 是否去掉 iOS 下的默认内边距，只微信小程序有效
+    disableDefaultPadding: {
+      type: Boolean,
+      default: uni.$u.props.textarea.disableDefaultPadding },
+
+    // focus时，点击页面的时候不收起键盘，只微信小程序有效
+    holdKeyboard: {
+      type: Boolean,
+      default: uni.$u.props.textarea.holdKeyboard },
+
+    // 最大输入长度，设置为 -1 的时候不限制最大长度
+    maxlength: {
+      type: [String, Number],
+      default: uni.$u.props.textarea.maxlength },
+
+    // 边框类型，surround-四周边框，bottom-底部边框
+    border: {
+      type: String,
+      default: uni.$u.props.textarea.border },
+
+    // 用于处理或者过滤输入框内容的方法
+    formatter: {
+      type: [Function, null],
+      default: uni.$u.props.textarea.formatter } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */
 /*!********************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-icon/icons.js ***!
   \********************************************************************************************************/
@@ -19731,7 +19998,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   'uicon-en': "\uE692" };exports.default = _default;
 
 /***/ }),
-/* 305 */
+/* 321 */
 /*!********************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-icon/props.js ***!
   \********************************************************************************************************/
@@ -19828,14 +20095,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */
 /*!***********************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-overlay/props.js ***!
   \***********************************************************************************************************/
@@ -19867,14 +20134,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */
 /*!**************************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-transition/props.js ***!
   \**************************************************************************************************************/
@@ -19906,7 +20173,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 322 */
+/* 338 */
 /*!*******************************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-transition/transition.js ***!
   \*******************************************************************************************************************/
@@ -19917,7 +20184,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 7));
 
 
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 323));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 339));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {return new Promise(function (resolve) {return setTimeout(resolve, 1000 / 50);});}; // nvue动画模块实现细节抽离在外部文件
 
 // 定义类名，通过给元素动态切换类名，赋予元素一定的css动画样式
@@ -20071,7 +20338,7 @@ var getClassNames = function getClassNames(name) {return {
     } } };exports.default = _default;
 
 /***/ }),
-/* 323 */
+/* 339 */
 /*!*********************************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
   \*********************************************************************************************************************/
@@ -20147,14 +20414,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     'leave-to': { opacity: 0, transform: 'scale(0.95)' } } };exports.default = _default;
 
 /***/ }),
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */
 /*!**************************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-status-bar/props.js ***!
   \**************************************************************************************************************/
@@ -20170,14 +20437,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */
 /*!***************************************************************************************************************!*\
   !*** D:/project file/my-project/uniCloud/Repatriation/uni_modules/uview-ui/components/u-safe-bottom/props.js ***!
   \***************************************************************************************************************/
