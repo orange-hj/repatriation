@@ -198,6 +198,10 @@ export default{
 		},
 		//登录
 		login(){
+			
+			uni.setStorageSync('isLogin',true)
+			return
+			
 			const that = this
 			if(that.phoneNumber.length == 0){
 				return that.$globalData.toast({title:'请输入手机号'})

@@ -99,9 +99,6 @@ try {
   components = {
     uSearch: function() {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 250))
-    },
-    uPopup: function() {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 258))
     }
   }
 } catch (e) {
@@ -352,6 +349,7 @@ var _goods = __webpack_require__(/*! @/api/goods/goods.js */ 145);var bannerPlat
       title: '首页', //顶部标题
       isShowBgc: false, //是否固定顶部
       //数据
+      showLocationPopup: false,
       showContact: false, //联系弹窗
       searchValue: '', //搜索内容
 

@@ -251,6 +251,103 @@
   background-color: #fff;
   height: 100%;
 }
+.mine-page .mine-page-container .user-info-plate.data-v-3f47feae {
+  padding: 40rpx 32rpx 20rpx;
+}
+.mine-page .mine-page-container .user-info-plate .user-info.data-v-3f47feae {
+  display: flex;
+  align-items: center;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image.data-v-3f47feae {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image .image-wrap.data-v-3f47feae {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image .image-wrap image.data-v-3f47feae {
+  width: 78rpx;
+  height: 78rpx;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image .sex.data-v-3f47feae {
+  position: absolute;
+  bottom: 0;
+  right: 0rpx;
+  color: #fff;
+  line-height: 1;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image .sex .man.data-v-3f47feae {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #6CC5FF;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image .sex .woman.data-v-3f47feae {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #FBAB94;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-image image.data-v-3f47feae {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name.data-v-3f47feae {
+  flex: 1;
+  padding: 20rpx 0 14rpx 30rpx;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .name.data-v-3f47feae {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .label.data-v-3f47feae {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+  line-height: 1;
+  font-size: 28rpx;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .label .label-wrap.data-v-3f47feae {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .label text.data-v-3f47feae {
+  margin-left: 16rpx;
+  padding: 8rpx 16rpx;
+  font-size: 22rpx;
+  border-radius: 28rpx;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .label .label_1.data-v-3f47feae {
+  background-color: #FFCC33;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .label .label_2.data-v-3f47feae {
+  background-color: #00B000;
+}
+.mine-page .mine-page-container .user-info-plate .user-info .user-name .label .label_3.data-v-3f47feae {
+  background-color: #ccc;
+}
 .mine-page .mine-page-container .main.data-v-3f47feae {
   flex: 1;
   padding: 0 24rpx;

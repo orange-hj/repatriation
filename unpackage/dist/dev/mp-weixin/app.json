@@ -3,7 +3,25 @@
     "pages/index/home",
     "pages/index/policy",
     "pages/index/information",
-    "pages/index/mine"
+    "pages/index/mine",
+    "uni_modules/uni-id-pages/pages/userinfo/deactivate/deactivate",
+    "uni_modules/uni-id-pages/pages/userinfo/userinfo",
+    "uni_modules/uni-id-pages/pages/userinfo/bind-mobile/bind-mobile",
+    "uni_modules/uni-id-pages/pages/userinfo/cropImage/cropImage",
+    "uni_modules/uni-id-pages/pages/login/login-withoutpwd",
+    "uni_modules/uni-id-pages/pages/login/login-withpwd",
+    "uni_modules/uni-id-pages/pages/login/login-smscode",
+    "uni_modules/uni-id-pages/pages/register/register",
+    "uni_modules/uni-id-pages/pages/register/register-by-email",
+    "uni_modules/uni-id-pages/pages/retrieve/retrieve",
+    "uni_modules/uni-id-pages/pages/retrieve/retrieve-by-email",
+    "uni_modules/uni-id-pages/pages/common/webview/webview",
+    "uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd",
+    "uni_modules/uni-id-pages/pages/register/register-admin",
+    "uni_modules/uni-id-pages/pages/userinfo/set-pwd/set-pwd",
+    "uni_modules/uni-im/pages/index/index",
+    "uni_modules/uni-im/pages/chat/chat",
+    "uni_modules/uni-im/pages/userList/userList"
   ],
   "subPackages": [
     {
@@ -26,7 +44,25 @@
         "setInfo",
         "login",
         "otherLogin",
-        "register"
+        "register",
+        "uni_modules/uni-id-pages/pages/userinfo/deactivate/deactivate",
+        "uni_modules/uni-id-pages/pages/userinfo/userinfo",
+        "uni_modules/uni-id-pages/pages/userinfo/bind-mobile/bind-mobile",
+        "uni_modules/uni-id-pages/pages/userinfo/cropImage/cropImage",
+        "uni_modules/uni-id-pages/pages/login/login-withoutpwd",
+        "uni_modules/uni-id-pages/pages/login/login-withpwd",
+        "uni_modules/uni-id-pages/pages/login/login-smscode",
+        "uni_modules/uni-id-pages/pages/register/register",
+        "uni_modules/uni-id-pages/pages/register/register-by-email",
+        "uni_modules/uni-id-pages/pages/retrieve/retrieve",
+        "uni_modules/uni-id-pages/pages/retrieve/retrieve-by-email",
+        "uni_modules/uni-id-pages/pages/common/webview/webview",
+        "uni_modules/uni-id-pages/pages/userinfo/change_pwd/change_pwd",
+        "uni_modules/uni-id-pages/pages/register/register-admin",
+        "uni_modules/uni-id-pages/pages/userinfo/set-pwd/set-pwd",
+        "uni_modules/uni-im/pages/index/index",
+        "uni_modules/uni-im/pages/chat/chat",
+        "uni_modules/uni-im/pages/userList/userList"
       ]
     }
   ],
@@ -46,12 +82,6 @@
         "iconPath": "static/icon/home.png",
         "pagePath": "pages/index/home",
         "text": "首页"
-      },
-      {
-        "selectedIconPath": "static/icon/policy_selected.png",
-        "iconPath": "static/icon/policy.png",
-        "pagePath": "pages/index/policy",
-        "text": "政策"
       },
       {
         "selectedIconPath": "static/icon/match_selected.png",

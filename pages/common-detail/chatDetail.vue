@@ -116,16 +116,59 @@ export default{
 			isShowBgc:false,				//是否固定顶部
 			
 			id:'',
-			
+			chatList:[],
 			//foot
 			chatValue:'',
+			
+			//web
+			isOpen:false,
 		}
 	},
 	onLoad(option) {
 		console.log(option);
 		this.id = option.id
 	},
+	onShow() {
+		
+		uni.connectSocket({
+			url: 'ws://192.168.1.101:3001/ws',
+			data() {
+				
+			},
+			header: {
+				'content-type': 'application/json'
+			},
+			protocols: ['protocol1'],
+			method: 'GET',
+			success(res) {
+				console.log(res);
+				if(res.errMsg == 'connectSocket:ok'){
+					console.log('------------');
+					this.isOpen = true
+				}
+			},
+			fail(err) {
+				console.log('err',err);
+			}
+		});
+	},
 	methods:{
+		connection(){
+			uni.connectSocket({
+				url: 'ws://localhost:3001',
+				data() {
+					return {
+						x: '',
+						y: ''
+					};
+				},
+				header: {
+					'content-type': 'application/json'
+				},
+				protocols: ['protocol1'],
+				method: 'GET'
+			});
+		},
 		back(){
 			uni.navigateBack()
 		}

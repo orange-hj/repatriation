@@ -74,7 +74,7 @@ export default {
 	methods:{
 		toLogin(){
 			uni.navigateTo({
-				url:'/pages/login/login'
+				url:'/pages/login/otherLogin'
 			})
 		},
 		toAuth(){

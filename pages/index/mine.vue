@@ -1,7 +1,46 @@
 <template>
     <view class="mine-page page-common">
 		<view class="mine-page-container">
-			<userInfo :isLogin="isLogin" :baseInfo="baseInfo"></userInfo>
+			<view class="user-info-plate">
+				<view class="user-info" v-if="!!isLogin" @click="toProfile">
+					<view class="user-image">
+						<image :src="baseInfo.avatar" mode="aspectFill"></image>
+						<view class="sex"  v-if="isLogin && baseInfo.auditStatus == 2">
+							<view class="man" v-if="baseInfo.sex === '男'">
+								<view class="icon iconfont icon-sex-boy" style="font-size: 24rpx;"></view>
+							</view>
+							<view class="woman" v-else>
+								<view class="icon iconfont icon-sex-girl" style="font-size: 24rpx;"></view>
+							</view>
+						</view>
+					</view>
+					<view class="user-name">
+						<view class="name">
+							{{baseInfo.nickName}}
+						</view>
+						<view class="label" v-if="baseInfo.auditStatus == 2">
+							<view>{{baseInfo.name}}</view>
+							<view class="label-wrap">
+								<text class="label_1">已认证</text>
+								<text class="label_2">学生</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				
+				<view class="user-info" v-else>
+					<view class="user-image">
+						<view class="image-wrap">
+							<image :src="defaultAvatarUrl" mode="aspectFill"></image>
+						</view>
+					</view>
+					<view class="user-name" @click="toLogin">
+						<view class="name">
+							请登录
+						</view>
+					</view>
+				</view>
+			</view>
 			
 			<view class="main">
 				
@@ -96,6 +135,11 @@ export default {
 				this.baseInfo = res.data
 			})
 		},
+		toLogin(){
+			uni.navigateTo({
+				url:'/pages/login/otherLogin'
+			})
+		},
 		toBusiness(){
 			uni.navigateTo({
 				url:'/pages/business/business'
@@ -112,6 +156,104 @@ export default {
 		flex-direction: column;
 		background-color: #fff;
 		height: 100%;
+		.user-info-plate{
+			padding: 40rpx 32rpx 20rpx;
+			.user-info{
+				display: flex;
+				align-items: center;
+				.user-image{
+					position: relative;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 124rpx;
+					height: 124rpx;
+					border-radius: 50%;
+					background-color: #fff;
+					.image-wrap{
+						position: relative;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 112rpx;
+						height: 112rpx;
+						border-radius: 50%;
+						background-color: #f7f7f7;
+						box-sizing: border-box;
+						image{
+							width: 78rpx;
+							height: 78rpx;
+						}
+					}
+					.sex{
+						position: absolute;
+						bottom: 0;
+						right: 0rpx;
+						color: #fff;
+						line-height: 1;
+						.man{
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							width: 40rpx;
+							height: 40rpx;
+							border-radius: 50%;
+							background-color: #6CC5FF;
+						}
+						.woman{
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							width: 40rpx;
+							height: 40rpx;
+							border-radius: 50%;
+							background-color: #FBAB94;
+						}
+					}
+					image{
+						width: 112rpx;
+						height: 112rpx;
+						border-radius: 50%;
+					}
+				}
+				.user-name{
+					flex: 1;
+					padding: 20rpx 0 14rpx 30rpx;
+					.name{
+						font-size: 32rpx;
+						font-weight: 700;
+					}
+					.label{
+						display: flex;
+						align-items: center;
+						margin-top: 24rpx;
+						line-height: 1;
+						font-size: 28rpx;
+						.label-wrap{
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						}
+						text{
+							margin-left: 16rpx;
+							padding: 8rpx 16rpx;
+							font-size: 22rpx;
+							border-radius: 28rpx;
+						}
+						.label_1{
+							background-color: #FFCC33;
+						}
+						.label_2{
+							background-color: #00B000;
+						}
+						.label_3{
+							background-color: #ccc;
+						}
+					}
+				}
+			}
+		}
+		
 		.main{
 			flex: 1;
 			padding: 0 24rpx;

@@ -1,0 +1,13 @@
+{
+  "name": "uni-im-co",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "uni-config-center": "file:../../../../uni-config-center/uniCloud/cloudfunctions/common/uni-config-center",
+    "uni-id-common": "file:../../../../uni-id-common/uniCloud/cloudfunctions/common/uni-id-common",
+    "common-uni-cloud-push": "file:../../../../../uniCloud-aliyun/cloudfunctions/common/common-uni-cloud-push"
+  },
+  "extensions": {
+    "uni-cloud-push": {}
+  }
+}

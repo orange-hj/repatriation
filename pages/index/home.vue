@@ -81,7 +81,7 @@
 						</view>
 						
 						<!-- 点击联系弹出层 -->
-						<u-popup :show="showContact" 
+						<!-- <u-popup :show="showContact" 
 							@close="close"
 							mode="center"
 							>
@@ -94,7 +94,7 @@
 									<view class="icon iconfont icon-kefu"></view>
 								</view>
 							</view>
-						</u-popup>
+						</u-popup> -->
 					</view>
 				
 					<!-- banner -->
@@ -187,6 +187,7 @@ export default{
 			title:'首页',					//顶部标题
 			isShowBgc:false,				//是否固定顶部
 			//数据
+			showLocationPopup:false,
 			showContact:false,				//联系弹窗
 			searchValue:'',					//搜索内容
 			
@@ -254,6 +255,8 @@ export default{
 .home-page{
 	background-color: #F3F6FB;
 	.home-page-container{
+		display: flex;
+		flex-direction: column;
 		.nav-wrap{
 			position: relative;
 			height: 516rpx;

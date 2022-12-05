@@ -1,0 +1,635 @@
+<template>
+	<view id="page">
+		<!-- <uni-list>
+			<uni-list-item title="新的朋友" thumb="/static/im-conversation/add.jpg" to="./add/add"></uni-list-item>
+		</uni-list> -->
+		<!-- #ifdef H5 -->
+		<match-media min-width="960">
+			<!-- 底部版权声明栏 -->
+			<text id="about">欢迎体验基于uni-push2.0的uni-im</text>
+			<!-- 布局最左侧 菜单栏 -->
+			<view id="left-tabbar">
+				<cloud-image class="avatar" @click="toUcenter" :src="avatarUrl" width="50px" height="50px"
+					borderRadius="100px"></cloud-image>
+				<!-- {{currentUserInfo.username}} -->
+				<uni-icons class="toUcenter" color="#38bc48" size="36" type="chatbubble-filled"></uni-icons>
+			</view>
+		</match-media>
+		<!-- #endif -->
+		<!-- 会话列表 -->
+		<view id="conversation">
+			<!-- #ifdef H5 -->
+			<!-- 搜索会话用户、聊天记录... -->
+			<match-media min-width="960">
+				<view id="search-bar-box">
+					<uni-search-bar class="search-bar" radius="5" placeholder="搜索" clearButton="auto"
+						cancelButton="none" @confirm="search" />
+					<uni-icons @click="addUser" color="#848386" size="26" type="plus"></uni-icons>
+				</view>
+			</match-media>
+			<!-- #endif -->
+
+			<!-- #ifdef H5 -->
+			<scroll-view id="user-list-box" scroll-y="true" @scrolltolower="loadMore()">
+				<!-- #endif -->
+				<!-- 会话用户列表 -->
+				<uni-list class="user-list" :style="{'height':wHeight,'width':'750rpx'}">
+					<uni-list-chat v-for="(item,index) in conversationList" :key="item.id"
+						:showBadge="item.unread_count>0" :badgeText="item.unread_count" link :title="item.title"
+						class="item" :class="{active:currentConversationId==item.id}" :note="item.last_msg_note"
+						:avatar="item.avatar_file&&item.avatar_file.url ? item.avatar_file.url : '/uni_modules/uni-im/static/avatarUrl.png'"
+						@click="toChat(item.id)" direction="column" :time="formatTime(item.update_time)">
+					</uni-list-chat>
+					<!-- #ifdef APP-NVUE -->
+					<!-- nvue端appear（元素一旦显示在可视窗口中）就触发加载更多。-->
+					<cell v-if="conversationList.length" @appear="loadMore()"></cell>
+					<!-- #endif -->
+				</uni-list>
+				<!-- #ifdef H5 -->
+			</scroll-view>
+			<!-- #endif -->
+		</view>
+		<!-- #ifdef H5 -->
+		<match-media min-width="960" v-if="isWidescreen">
+			<!-- 聊天窗口 -->
+			<view id="chat-view-box">
+				<view id="chat-header">
+					<block v-if="currentConversationId">
+						{{conversationDatas[currentConversationId].title}}
+					</block>
+				</view>
+				<scroll-view id="chat-view" :scroll-top="scrollTop"
+					@scroll="onScroll" scroll-y :lower-threshold="100">
+					<chat-view ref="chat-view" @setScroll="scrollTop = $event"></chat-view>
+				</scroll-view>
+			</view>
+		</match-media>
+		<!-- #endif -->
+	</view>
+</template>
+
+<script>
+	const db = uniCloud.database();
+	// #ifdef H5
+	import chatView from '@/uni_modules/uni-im/pages/chat/chat';
+	// #endif
+	import uniImUtils from '@/uni_modules/uni-im/common/utils.js';
+	import {
+		store as uniIdStore,
+		mutations as uniIdMutations
+	} from '@/uni_modules/uni-id-pages/common/store.js';
+	import {
+		mapState,
+		mapMutations,
+		mapGetters,
+		mapActions
+	} from 'vuex';
+	export default {
+		// #ifdef H5
+		components: {
+			chatView
+		},
+		// #endif
+		watch: {
+			isWidescreen(isWidescreen) {
+				this.setStyle()
+				if (isWidescreen) {
+					uni.hideTabBar()
+				} else {
+					uni.showTabBar()
+				}
+			}
+		},
+		computed: {
+			...mapState({
+				//当前正在对话端用户ID，实现pc端高亮效果
+				currentConversationId: state => state.uniIm.currentConversationId,
+				timestamp: state => state.uniIm.timestamp,
+				conversationDatas: state => state.uniIm.conversationDatas
+			}),
+			...mapGetters({
+				conversationList: 'uniIm/conversationList',
+				unread_count: 'uniIm/unread_count'
+			}),
+			currentUserInfo() {
+				return uniIdStore.userInfo
+			},
+			avatarUrl() {
+				if (this.currentUserInfo.avatar_file && this.currentUserInfo.avatar_file.url) {
+					return this.currentUserInfo.avatar_file.url
+				}
+				return '/uni_modules/uni-im/static/avatarUrl.png'
+			}
+		},
+		data() {
+			return {
+				wHeight: 'auto',
+				isWidescreen: false,
+				userInfo: {},
+				scrollTop: 0
+			};
+		},
+		async onShow() {
+			// #ifdef H5
+			this.setStyle()
+			// #endif
+		},
+		beforeCreate() {},
+		created() {
+			// #ifdef H5
+			const mediaQueryOb = uni.createMediaQueryObserver(this)
+			mediaQueryOb.observe({
+				minWidth: 960
+			}, matches => {
+				this.isWidescreen = matches;
+			})
+			// #endif
+
+			// #ifdef APP-NVUE
+			this.wHeight = uni.getSystemInfoSync().windowHeight + 'px'
+			// #endif
+
+			// #ifdef H5
+			uni.$on('uni-im-showLast', e => {
+				// console.log('uni-im-showLast');
+				this.scrollTop = document.querySelector('#chat-view .uni-scroll-view-content').scrollHeight
+			})
+			// #endif
+		},
+		async onLoad({
+			token,
+			user_id,
+			goods,
+			conversation_id
+		}) {
+			// 发布新版本后，清理旧版本下的storage避免脏数据引发问题
+			let version = '2022.12.01.01'
+			if (uni.getStorageSync('uni-im-storage-version') != version) {
+				let data = uni.getStorageInfoSync();
+				// console.log('data.keys', JSON.stringify(data.keys));
+				data.keys.forEach(item => {
+					if (item.includes('uni-im-msg:') || item.includes('uni-im-conversation')) {
+						// console.log(item);
+						uni.removeStorageSync(item);
+						console.log(uni.getStorageSync(item));
+					}
+				});
+				uni.setStorageSync('uni-im-storage-version',version)
+			}
+			
+			
+			if (token) {
+				// #ifdef H5
+				//删除地址栏的token，且不刷新页面
+				history.pushState({},'','/#/');
+				// #endif
+				//来源三方系统登录的token
+				const uniImCo = uniCloud.importObject("uni-im-co",{
+					loadingOptions: {
+						title: '登录中'
+					}
+				})
+				let res = await uniImCo.login(token)
+				await uniIdMutations.updateUserInfo()
+			} else {
+				if (!uniCloud.getCurrentUserInfo().uid) {
+					return uni.redirectTo({
+						url: '/uni_modules/uni-id-pages/pages/login/login-withpwd'
+					})
+				}
+			}
+
+			this.$nextTick(()=>{
+				this.init({
+					user_id,
+					goods,
+					conversation_id
+				})
+			})
+			
+			uni.$on('uni-id-pages-login-success', async () => {
+				this.init({
+					user_id,
+					goods,
+					conversation_id
+				})
+			})
+		},
+		onUnload() {
+			uni.$off('uni-id-pages-login-success')
+		},
+		onHide() {},
+		methods: {
+			...mapMutations({
+				setCurrentConversationId: 'uniIm/setCurrentConversationId',
+				updateConversation: 'uniIm/updateConversation'
+			}),
+			...mapActions({
+				// 加载更多会话数据
+				loadMore: 'uniIm/loadMoreConversation',
+				initConversationData: 'uniIm/initConversationData',
+				getConversation: 'uniIm/getConversation',
+				setMsgList: 'uniIm/setMsgList'
+			}),
+			async init({
+				conversation_id,
+				user_id,
+				goods
+			}) {
+				// 初始化会话列表
+				// console.log('初始化会话列表');
+				await this.initConversationData()
+				if (conversation_id) {
+					console.log('conversation_id', conversation_id);
+					this.toChat(conversation_id)
+				} else if (user_id) {
+					//创建会话
+					const currentConversation = await this.getConversation({
+						user_id
+					})
+					console.log('currentConversation', currentConversation);
+					// 当前用户给对方发个消息
+					this.toChat(currentConversation.id)
+				} else {
+					if (this.isWidescreen) {
+						let [firstConversation] = this.conversationList
+						if (firstConversation) {
+							setTimeout(() => {
+								this.toChat(firstConversation.id)
+							}, 100);
+						} else {
+							uni.showModal({
+								content: '没有任何会话，请先到用户列表选择用户',
+								showCancel: false
+							});
+						}
+					}
+				}
+
+				if (this.isWidescreen && goods) {
+					console.log(goods);
+					if (typeof goods != 'object') {
+						goods = JSON.parse(goods)
+					}
+					const {
+						name,
+						url
+					} = goods
+					if (name && url) {
+						this.$refs['chat-view'].chatText = '【' + name + ':' + url + '】'
+					}
+				}
+			},
+			search(e) {
+				// console.log("search-e: " + JSON.stringify(e));
+				uni.showToast({
+					title: '功能还在开发中',
+					icon: 'none'
+				});
+			},
+			onScroll(e) {
+				if (this.isWidescreen) {
+					// console.log('--------------onPageScroll',e, e.detail.scrollTop);
+					setTimeout(() => {
+						if (this.scrollTop == e.detail.scrollTop && this.scrollTop < 50) {
+							// console.log('滚动结束', e.detail.scrollTop);
+							if (this.scrollTop == 0) {
+								this.scrollTop = 1
+							}
+							setTimeout(() => {
+								this.$refs['chat-view'].beforeLoadMore(e.detail.scrollTop)
+							}, 500)
+						}
+					}, 500)
+					this.scrollTop = e.detail.scrollTop
+				}
+			},
+			addUser() {
+				uni.showToast({
+					title: '添加好友功能还在开发中',
+					icon: 'none'
+				});
+			},
+			toChat(conversation_id) {
+				// console.log('toChat',{conversation_id,'isWidescreen':this.isWidescreen});
+				this.setCurrentConversationId(conversation_id);
+				if (this.isWidescreen) { //若为宽屏，则触发右侧详情页的自定义事件，通知右侧窗体刷新详情
+					if(this.$refs['chat-view']){
+						this.$refs['chat-view'].load(conversation_id)
+					}
+				} else { // 若为窄屏，则打开新窗体，在新窗体打开详情页面
+					uni.navigateTo({
+						url: '/uni_modules/uni-im/pages/chat/chat?conversation_id=' + conversation_id,
+						animationDuration: 300
+					})
+				}
+			},
+			toUcenter() {
+				uni.navigateTo({
+					url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo?showLoginManage=true',
+					complete(e) {
+						// console.log("e: " + JSON.stringify(e));
+					}
+				})
+			},
+			formatTime(timestamp) {
+				return uniImUtils.formatTime(timestamp)
+			},
+			setStyle() {
+				// #ifdef H5
+				/* 删除页面的占位元素 */
+				let conversationChildDom = document.querySelector(
+					'uni-page[data-page="uni_modules/uni-im/pages/index/index"]')
+				if (!conversationChildDom) {
+					return
+				}
+				let conversationDom = conversationChildDom.parentElement
+				if (!conversationDom) {
+					// token无效会被重新定向到登录页面时，找不到conversationDom
+					return
+				}
+
+				const oldClassName = 'uni-body uni_modules-uni-im-pages-index-index'
+				if (this.isWidescreen) {
+					conversationDom.querySelector('uni-page-body').style.background = 'none'
+					conversationDom.querySelector('.uni-page-head').style.display = 'none'
+					conversationDom.querySelector('.uni-placeholder').style.display = 'none'
+					conversationDom.querySelector('uni-page').style.transform = 'scale(0.86) translateY(-30px)';
+					conversationDom.className = oldClassName + ' uni-im-dark'
+				} else {
+					conversationDom.querySelector('.uni-page-head').style.display = 'block'
+					conversationDom.querySelector('.uni-placeholder').style.display = 'block'
+					conversationDom.querySelector('uni-page').style.transform = 'scale(1)';
+					conversationDom.className = oldClassName
+				}
+				// #endif
+			}
+		},
+		async onReachBottom() {
+			await this.loadMore()
+		},
+		onNavigationBarButtonTap(e) {
+			console.log(e);
+			if (e.index) {
+				let data = uni.getStorageInfoSync();
+				console.log('data.keys', JSON.stringify(data.keys));
+				data.keys.forEach(item => {
+					if (item.includes('uni-im-msg:') || item.includes('uni-im-conversation')) {
+						// console.log(item);
+						uni.removeStorageSync(item);
+						console.log(uni.getStorageSync(item));
+					}
+				});
+				uni.showToast({
+					title: 'clear storage ok',
+					icon: 'none'
+				});
+			} else {
+				uni.navigateTo({
+					url: '/uni_modules/uni-id-pages/pages/login/login-withpwd',
+					complete: e => {
+						console.log(e);
+					}
+				});
+			}
+		},
+	}
+</script>
+
+<style lang="scss" scoped>
+	/* #ifndef APP-NVUE */
+	#page,
+	view {
+		display: flex;
+		flex-direction: row;
+	}
+
+	view,
+	scroll-view {
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* #endif */
+
+	/* #ifdef H5 */
+	#conversation {
+		flex: 1;
+		// background-color: #f6f6f6;
+		border-right: solid 1px #dededd;
+	}
+
+	#user-list-box {
+		height: calc(100vh - 94px);
+	}
+
+	@media screen and (min-width: 960px) {
+
+		#page,
+		page {
+			background-color: #2e2e3e;
+		}
+
+		#user-list-box {
+			width: 299px;
+		}
+
+		#left-tabbar {
+			display: flex;
+			width: 68px;
+			height: 100vh;
+			background-color: #ECECEC;
+			border-radius: 15px 0 0 15px;
+			align-items: center;
+			padding: 10vh 0;
+		}
+
+		#left-tabbar>* {
+			margin-bottom: 44px;
+			// cursor: pointer;
+		}
+
+		#conversation {
+			width: 300px;
+			height: 100vh;
+			bottom: 0;
+			z-index: 900;
+			background-color: #FFF;
+		}
+
+		#user-list-box {
+			height: calc(100vh - 70px);
+		}
+
+		#user-list-box .user-list {
+			width: 100% !important;
+		}
+
+		#chat-view-box {
+			height: 100vh;
+			width: 660px;
+			border-radius: 0 10px 10px 0;
+			overflow: hidden;
+			background-color: #FFF;
+		}
+
+		#chat-header {
+			padding: 15px;
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			height: 70px;
+			width: 100%;
+			z-index: 99;
+			background-color: #FFF;
+		}
+
+		#chat-view {
+			background-color: #f8f8f8;
+			height: calc(100vh - 270px);
+			// margin-top: -30px;
+			/* #ifndef APP-NVUE */
+			scroll-anchoring: 'auto'
+				/* #endif */
+		}
+
+		#chat-view ::v-deep .null {
+			background-color: #f8f8f8;
+		}
+
+		#chat-view ::v-deep #list {
+			margin-bottom: 5px;
+		}
+
+		#chat-view ::v-deep .page {
+			width: 660px;
+		}
+
+		// pc端不用占位符,因为头部是虚拟的
+		#chat-view ::v-deep .msg-list-box {
+			margin-top: 0;
+		}
+
+		#chat-view ::v-deep .page * {
+			max-width: 660px;
+		}
+
+		#chat-view ::v-deep .unread_count {
+			position: fixed;
+			left: 38px;
+			top: 180px;
+			flex-direction: row;
+			height: 16px;
+			line-height: 16px;
+			justify-content: center;
+			align-items: center;
+			background-color: #ff5a5f;
+			border-radius: 0;
+			color: #FFF;
+			border-radius: 100px;
+			padding: 4px;
+			font-size: 10px;
+		}
+
+		#chat-view ::v-deep .chat-foot {
+			border-radius: 0 0 10px 0;
+		}
+
+		#conversation ::v-deep .uni-list--border,
+		#conversation ::v-deep .uni-list--border-top {
+			display: none;
+		}
+
+		/* #ifdef VUE3 && H5 */
+		::v-deep {
+
+			.formatTime,
+			.msg-list,
+			.msg-box,
+			.loadMore,
+			.tip-view {
+				width: 660px;
+			}
+		}
+
+		/* #endif */
+	}
+
+	@media screen and (max-width: 960px) {
+		// .uni-body {
+		// 	background-color: #fefefe;
+		// }
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	::v-deep .uni-list--border-bottom {
+		display: none;
+	}
+
+	/* #endif */
+
+
+	.conversation-null {
+		justify-content: center;
+		align-items: center;
+		margin: 36rpx;
+		color: #999999;
+	}
+
+	/* #ifndef APP-NVUE */
+	.item {
+		cursor: pointer;
+	}
+
+	/* #endif */
+	.active {
+		background-color: #f8faf5;
+	}
+
+	/* #ifdef H5 */
+	#search-bar-box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		height: 70px;
+	}
+
+	.search-bar {
+		z-index: 999;
+		width: 222px;
+		display: flex;
+		justify-content: center;
+		margin: 8px;
+	}
+
+	::v-deep .uni-searchbar__box {
+		border-radius: 5px;
+		background-color: #ECECEC !important;
+		height: 30px;
+		width: 100px;
+	}
+
+	.uni-searchbar {
+		// flex-direction: row;
+		padding: 0;
+	}
+
+	.uni-searchbar__box-search-input {
+		color: #efefef;
+	}
+
+	#about {
+		color: rgb(255, 255, 255);
+		position: fixed;
+		bottom: -50px;
+		left: calc(50% - 130px);
+		width: 260px;
+		text-align: center;
+		z-index: 999;
+	}
+
+	/* #endif */
+</style>

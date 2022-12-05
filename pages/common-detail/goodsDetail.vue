@@ -158,9 +158,9 @@ export default{
 		},
 		//我想要
 		toChatDetail(){
-			createChat({goodsId:this.id}).then(res =>{
-				console.log(res);
-			})
+			// createChat({goodsId:this.id}).then(res =>{
+			// 	console.log(res);
+			// })
 			uni.navigateTo({
 				url:'/pages/common-detail/chatDetail?id=' + this.id
 			})

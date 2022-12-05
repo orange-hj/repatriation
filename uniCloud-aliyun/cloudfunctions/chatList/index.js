@@ -7,6 +7,15 @@ const sys_user = db.collection('sys_user')
 const goods = db.collection('goods')
 const chat = db.collection('chat')
 exports.main = async (event, context) => {
+	const dbJQL = uniCloud.databaseForJQL({
+		event,
+		context
+	})
+	dbJQL.setUser({
+		uid: 'user-id',
+		role: ['admin'],
+		permission: []
+	})
 	//判断是否有token
 	if(!event.headers.token){
 		return {
@@ -34,16 +43,12 @@ exports.main = async (event, context) => {
 		}
 	}
 	//筛选列表数据
-	let chatList = []
 	
-	
-	
-	let a = await chatListResult.group('receiveId')
-	
+	let order = await dbJQL.collection('chat').where({senderId:senderId.uid}).getTemp()
+	const result = await dbJQL.collection(order,'sys_user').get()
 	return{
 		code:200,
 		message:'11111',
-		data:a
+		data:result
 	}
-	
 };
